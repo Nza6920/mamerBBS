@@ -9,7 +9,21 @@ class VerificationCodesController extends Controller
 {
     public function store(VerificationCodeRequest $request, EasySms $easySms)
     {
-        $phone = $request->phone;
+        $captchaData = \Cache::get($request->captcha_key);
+
+        // 验证码已失效或不存在
+        if (! $captchaData) {
+            return $this->response->error('图片验证码已失效', 422);
+        }
+
+        // 验证码错误
+        if (! hash_equals($captchaData['code'], $request->captcha_code)) {
+            // 验证错误, 清除缓存
+            \Cache::forget($request->captcha_key);
+            return $this->response->errorUnauthorized('验证码错误');
+        }
+
+        $phone = $captchaData['phone'];
 
         // 生成四位随机数, 左侧补零
         $code = str_pad(random_int(1, 9999), 4, 0, STR_PAD_LEFT);
