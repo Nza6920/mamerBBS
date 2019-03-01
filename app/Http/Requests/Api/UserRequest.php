@@ -14,8 +14,9 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'              => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name',
-            'password'          => 'required|string|min:6',
+            'email'             => 'required|email|unique:users,email',
+            'name'              => 'required|between:2,25|regex:/^[A-Za-z0-9\x{4e00}-\x{9fa5}]+$/u|unique:users,name',
+            'password'          => 'required|string|min:6|max:12',
             'verification_key'  => 'required|string',
             'verification_code' => 'required|string',
         ];
@@ -26,6 +27,13 @@ class UserRequest extends FormRequest
         return [
             'verification_key'  => '短信验证码 key',
             'verification_code' => '短信验证码',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'email.unique' => '该邮箱已被注册, 请直接登陆',
         ];
     }
 }

@@ -24,6 +24,7 @@ class UsersController extends Controller
 
         // 创建用户
         $user->name = $request->name;
+        $user->email = $request->email;
         $user->phone = $verifyData['phone'];
         $user->password = bcrypt($request->password);
         $user->save();

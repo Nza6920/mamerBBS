@@ -28,6 +28,7 @@ class VerificationCodesController extends Controller
         // 生成四位随机数, 左侧补零
         $code = str_pad(random_int(1, 9999), 4, 0, STR_PAD_LEFT);
 
+        // 发送短信验证码
         try {
             $result = $easySms->send($phone, [
                 'content' => "【mamer社区】您的验证码是{$code}。如非本人操作，请忽略本短信"
@@ -39,6 +40,7 @@ class VerificationCodesController extends Controller
 
         $key = 'verificationCode_'.str_random(15);
         $expiredAt = now()->addMinutes(10);
+
         // 缓存验证码十分钟后过期
         \Cache::put($key, ['phone' => $phone, 'code' => $code], $expiredAt);
 
