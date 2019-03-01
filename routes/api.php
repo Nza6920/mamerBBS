@@ -30,5 +30,9 @@ $api->version('v1', [
         // 删除 token
         $api->delete('authorizations/current', 'AuthorizationsController@destroy')
             ->name('api.authorizations.destroy');
+
+        // 测试专用
+        $api->post('test/destroy', 'TestController@destroy')
+            ->name('api.test.destroy');
     });
 });
