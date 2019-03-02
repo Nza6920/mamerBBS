@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Models\User;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -46,6 +47,16 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // 判断无效邮箱
+        if ($exception instanceof \Swift_TransportException) {
+            $user = User::where('name', $request->name)->first();
+//            session()->put('badEmail', $user->email);
+            session()->flash('badEmail', $user->email);
+            $user->delete();
+
+            return redirect()->route('register');
+        }
+
         return parent::render($request, $exception);
     }
 }
