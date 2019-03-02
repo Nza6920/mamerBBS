@@ -34,12 +34,6 @@
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-                                {{--@if($badEmail == null)--}}
-                                    {{--<span class="invalid-feedback-my" >--}}
-                                        {{--<strong>此 {{$badEmail}} 无效, 请使用有效的邮箱</strong>--}}
-                                    {{--</span>--}}
-                                {{--@endif--}}
-
                                 @if(session()->has('badEmail'))
                                     <span class="invalid-feedback-my" >
                                         <strong>此 {{session()->get('badEmail')}} 无效, 请使用有效的邮箱</strong>

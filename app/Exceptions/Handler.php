@@ -47,10 +47,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        // 判断无效邮箱
+        // 无效邮箱注册
         if ($exception instanceof \Swift_TransportException) {
+
             $user = User::where('name', $request->name)->first();
-//            session()->put('badEmail', $user->email);
             session()->flash('badEmail', $user->email);
             $user->delete();
 
