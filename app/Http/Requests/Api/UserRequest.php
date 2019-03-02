@@ -15,7 +15,7 @@ class UserRequest extends FormRequest
     {
         return [
             'email'             => 'required|email|unique:users,email',
-            'name'              => 'required|between:2,25|regex:/^[A-Za-z0-9\x{4e00}-\x{9fa5}]+$/u|unique:users,name',
+            'name'              => 'required|between:2,12|regex:/^[A-Za-z0-9\x{4e00}-\x{9fa5}]+$/u|unique:users,name',
             'password'          => 'required|string|min:6|max:12',
             'verification_key'  => 'required|string',
             'verification_code' => 'required|string',
