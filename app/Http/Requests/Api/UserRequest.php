@@ -34,6 +34,7 @@ class UserRequest extends FormRequest
     {
         return [
             'email.unique' => '该邮箱已被注册, 请直接登陆',
+            'name.regex'   => '名字只能由数字, 字母, 中文字符组成',
         ];
     }
 }

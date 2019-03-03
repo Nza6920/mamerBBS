@@ -22,13 +22,16 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name'     => ['required', 'string', 'min:2', 'max:12'],
+            'name'     => ['required', 'string', 'min:2', 'max:12', 'regex:/^[A-Za-z0-9\x{4e00}-\x{9fa5}]+$/u'],
             'email'    => ['required', 'string', 'email', 'min:2', 'max:32', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'max:16', 'confirmed'],
+            'password' => ['required', 'string', 'min:6', 'max:16', 'confirmed', 'regex:/^[^\s]*$/'],
             'captcha'  => ['required', 'captcha'],
         ], [
             'captcha.required' => '验证码不能为空',
             'captcha.captcha'  => '请输入正确的验证码',
+            'email.unique'     => '该邮箱已被注册, 请直接登陆',
+            'name.regex'       => '名字只能由数字, 字母, 中文字符组成',
+            'password.regex'   => '密码不能包含空格'
         ]);
     }
 
