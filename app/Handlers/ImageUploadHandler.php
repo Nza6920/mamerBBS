@@ -4,7 +4,7 @@ namespace App\Handlers;
 class ImageUploadHandler
 {
     // 只允许以下后缀名的文件上传
-    protected $allowed_ext = ["png", "jpg", "gif", "jpeg"];
+    protected $allowed_ext = ["png", "jpg", "gif", "jpeg", "bmp"];
 
     public function save($file, $folder, $file_prefix)
     {
