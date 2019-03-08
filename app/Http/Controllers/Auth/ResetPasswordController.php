@@ -25,5 +25,24 @@ class ResetPasswordController extends Controller
         return redirect($this->redirectPath());
     }
 
+    // 重写 rules
+    protected function rules()
+    {
+        return [
+            'token' => 'required',
+            'email' => 'required|email|min:2|max:32',
+            'password' => 'required|confirmed|string|min:6|max:16|regex:/^[^\s]*$/',
+        ];
+    }
+
+    // 重写 validationErrorMessages
+    protected function validationErrorMessages()
+    {
+        return [
+            'password.regex' => '密码不能含有空格.',
+            'password.min' => '密码最小为6位',
+            'password.max' => '密码最大为16位',
+        ];
+    }
 
 }

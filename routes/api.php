@@ -11,6 +11,7 @@ $api->version('v1', [
         'limit'      => config('api.rate_limits.sign.limit'),     // 默认10次
         'expires'    => config('api.rate_limits.sign.expires'),   // 默认1分钟
     ], function ($api) {
+        /** 不需要token的接口 **/
         // 短信验证码
         $api->post('verificationCodes', 'VerificationCodesController@store')
             ->name('api.verificationCodes.store');
@@ -29,11 +30,14 @@ $api->version('v1', [
         // 删除 token
         $api->delete('authorizations/current', 'AuthorizationsController@destroy')
             ->name('api.authorizations.destroy');
-        // 测试专用
+
+        /** 测试专用接口 **/
         $api->post('test/destroy', 'TestController@destroy')
             ->name('api.test.destroy');
+        $api->post('test/token', 'TestController@generateToken')
+            ->name('api.test.token');
 
-        // 需要 token 验证的接口
+        /** 需要token的接口 **/
         $api->group(['middleware' => 'api.auth'], function ($api) {
             // 当前登陆用户信息
             $api->get('user', 'UsersController@me')
