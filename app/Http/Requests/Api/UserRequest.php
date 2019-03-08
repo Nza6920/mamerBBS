@@ -13,13 +13,25 @@ class UserRequest extends FormRequest
 
     public function rules()
     {
-        return [
-            'email'             => 'required|email|min:2|max:32|unique:users,email',
-            'name'              => 'required|between:2,12|regex:/^[A-Za-z0-9\x{4e00}-\x{9fa5}]+$/u|unique:users,name',
-            'password'          => 'required|string|min:6|max:16',
-            'verification_key'  => 'required|string',
-            'verification_code' => 'required|string',
-        ];
+        switch($this->method()) {
+            case 'POST':
+                return [
+                    'email'             => 'required|email|min:2|max:32|unique:users,email',
+                    'name'              => 'required|between:2,12|regex:/^[A-Za-z0-9\x{4e00}-\x{9fa5}]+$/u|unique:users,name',
+                    'password'          => 'required|string|min:6|max:16',
+                    'verification_key'  => 'required|string',
+                    'verification_code' => 'required|string',
+                ];
+                break;
+            case 'PATCH':
+                $userId = \Auth::guard('api')->id();
+                return [
+                    'name' => 'required|between:2,12|regex:/^[A-Za-z0-9\x{4e00}-\x{9fa5}]+$/u|unique:users,name,' .$userId,
+                    'introduction' => 'max:80',
+                    'avatar_image_id' => 'exists:images,id,type,avatar,user_id,'.$userId,
+                ];
+                break;
+        }
     }
 
     public function attributes()
@@ -28,6 +40,7 @@ class UserRequest extends FormRequest
             'verification_key'  => '短信验证码 key',
             'verification_code' => '短信验证码',
             'name'              => '用户名',
+            'introduction'      => '个人简介',
         ];
     }
 
