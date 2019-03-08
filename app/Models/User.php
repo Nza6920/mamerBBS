@@ -31,4 +31,14 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
     {
         return [];
     }
+
+    public function getAvatarAttribute()
+    {
+        // 用户默认头像
+        if ($this->attributes['avatar'] == null ||
+            ! file_exists(str_replace(config('app.url'), public_path(), $this->attributes['avatar']))) {
+            return \Avatar::create($this->name)->toBase64();
+        }
+        return $this->attributes['avatar'];
+    }
 }
