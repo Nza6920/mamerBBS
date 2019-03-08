@@ -9,15 +9,13 @@ class TestController extends Controller
 {
     public function destroy(Request $request)
     {
-        $phone = $request->phone;
-
-        $user = User::where('phone', $phone)->first();
-
-        if (!$user) {
-            return $this->response->error('没有找到该用户', 404);
+        if ($request->has('phone')) {
+            $user = User::where('phone', $request->phone)->first();
+        }else {
+            $user = User::where('email', $request->email)->first();
         }
-
         $user->delete();
+
         return $this->response->noContent();
     }
 
