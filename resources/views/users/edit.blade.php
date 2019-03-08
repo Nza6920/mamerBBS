@@ -33,9 +33,17 @@
                         </div>
 
                         <div class="form-group mb-4">
-                            <label for="" class="avatar-label">用户头像</label>
-                            <input type="file" name="avatar" class="form-control-file">
+                            {{--<label for="" class="avatar-label">用户头像</label>--}}
+                            {{--<input type="file" name="avatar" class="form-control-file">--}}
+                            {{--<label for="file" class="btn btn-info">更换头像</label>--}}
+                            {{--<input id="file" type="file" name="avatar" style="display:none" class="form-control-file">--}}
+                            <div class="file-container" style="display:inline-block;position:relative;overflow: hidden;vertical-align:middle">
+                                <button class="btn btn-info fileinput-button" type="button"><span style="color: #e9ecef">浏览</span></button>
+                                <input type="file" id="jobData" name="avatar" onchange="loadFile(this.files[0])" style="position:absolute;top:0;left:0;font-size:34px; opacity:0">
+                            </div>
+                            <span id="filename" style="vertical-align: middle;font-size: 14px; color: #E6A23C">未选择文件</span>
                             @if($user->avatar)
+                                <br>
                                 <br>
                                 <img class="thumbnail img-responsive" src="{{ $user->avatar }}" width="200" />
                             @endif
@@ -50,4 +58,10 @@
         </div>
     </div>
 
+    <script>
+        function loadFile(file){
+            $("#filename").html(file.name);
+        }
+    </script>
 @endsection
+
