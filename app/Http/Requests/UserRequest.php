@@ -27,7 +27,7 @@ class UserRequest extends FormRequest
             'avatar.dimensions' => '图片的清晰度不够，宽和高需要 208px 以上',
             'name.regex' => '用户名只能由字母, 数字, 中文组成',
             'name.unique' => '用户名已被占用',
-            'introduction' => '个人简介最大不能超过50个字'
+            'introduction.max' => '个人简介最大不能超过50个字'
         ];
     }
 
