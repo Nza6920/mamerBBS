@@ -35,9 +35,11 @@ class UsersController extends Controller
 
         if ($request->avatar) {
             $result = $uploader->save($request->avatar, 'avatars', $user->id, 416);
-            if ($result) {
-                $data['avatar'] = $result['path'];
+            // 图片格式不正确
+            if (! $result) {
+                return redirect()->back()->with('errors', collect(['头像必须是jpeg,png,jpg,gif格式的图片']));
             }
+            $data['avatar'] = $result['path'];
         }
 
         $user->update($data);

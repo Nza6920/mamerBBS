@@ -18,9 +18,9 @@ class ImageRequest extends FormRequest
         ];
 
         if ($this->type == 'avatar') {
-            $rules['image'] = 'required|mimes:jpeg,bmp,png,gif,jpg|dimensions:min_width=200,min_height=200';
+            $rules['image'] = 'required|mimes:jpeg,png,gif,jpg|dimensions:min_width=200,min_height=200';
         } else {
-            $rules['image'] = 'required|mimes:jpeg,bmp,png,gif,jpg';
+            $rules['image'] = 'required|mimes:jpeg,png,gif,jpg';
         }
 
         return $rules;

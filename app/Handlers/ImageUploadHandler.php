@@ -6,7 +6,7 @@ use Intervention\Image\Facades\Image;
 class ImageUploadHandler
 {
     // 只允许以下后缀名的文件上传
-    protected $allowed_ext = ["png", "jpg", "gif", "jpeg", "bmp"];
+    protected $allowed_ext = ["png", "jpg", "gif", "jpeg"];
 
     public function save($file, $folder, $file_prefix, $max_width = false)
     {
