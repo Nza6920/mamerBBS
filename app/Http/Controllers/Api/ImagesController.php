@@ -14,7 +14,14 @@ class ImagesController extends Controller
         $user = $this->user();
 
         $size = $request->type == 'avatar' ? 362 : 1024;
+
+
         $result = $uploader->save($request->image, str_plural($request->type), $user->id, $size);
+
+        // 图片格式错误
+        if (! $result) {
+            return $this->response->error('格式错啦, 头像必须是jpeg,png,jpg,gif格式的图片', 403);
+        }
 
         $image->path = $result['path'];
         $image->type = $request->type;
