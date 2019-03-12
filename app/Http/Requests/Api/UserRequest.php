@@ -18,7 +18,7 @@ class UserRequest extends FormRequest
                 return [
                     'email'             => 'required|email|min:2|max:32|unique:users,email',
                     'name'              => 'required|between:2,12|regex:/^[A-Za-z0-9\x{4e00}-\x{9fa5}]+$/u|unique:users,name',
-                    'password'          => 'required|string|min:6|max:16',
+                    'password'          => 'required|string|min:6|max:16|regex:/^[^\s\x{4e00}-\x{9fa5}]*$/u',
                     'verification_key'  => 'required|string',
                     'verification_code' => 'required|string',
                 ];
@@ -50,6 +50,7 @@ class UserRequest extends FormRequest
             'email.unique' => '该邮箱已注册, 请直接登陆',
             'name.regex'   => '用户名只能由数字, 字母, 中文字符组成',
             'name.unique'  => '用户名已被占用',
+            'password.regex' => '密码不能包含空格, 和中文字符',
         ];
     }
 }
