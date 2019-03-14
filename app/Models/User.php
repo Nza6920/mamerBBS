@@ -21,6 +21,11 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
         'password', 'remember_token',
     ];
 
+    // 用户有很多话题
+    public function topics()
+    {
+        return $this->hasMany(Topic::class);
+    }
 
     public function getJWTIdentifier()
     {
