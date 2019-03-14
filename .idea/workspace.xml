@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6b59fae1-9844-4b9a-b79e-d2e0cf20da0e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="6b59fae1-9844-4b9a-b79e-d2e0cf20da0e" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +72,7 @@
           <entry key="js" value="9" />
           <entry key="json" value="17" />
           <entry key="log" value="1" />
-          <entry key="php" value="15905" />
+          <entry key="php" value="15932" />
           <entry key="scss" value="66" />
         </counts>
       </usages-collector>
@@ -86,7 +84,7 @@
           <entry key="Git file" value="29" />
           <entry key="JavaScript" value="9" />
           <entry key="Log" value="1" />
-          <entry key="PHP" value="14959" />
+          <entry key="PHP" value="14986" />
           <entry key="SCSS" value="66" />
           <entry key="composer.json" value="17" />
         </counts>
@@ -130,10 +128,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/database/migrations/2019_03_14_210144_seed_categories_data.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1015">
-              <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+            <state relative-caret-position="626">
+              <caret line="38" selection-start-line="38" selection-end-line="38" />
               <folding>
-                <element signature="e#7#45#0#PHP" expanded="true" />
+                <element signature="e#7#41#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -349,6 +347,7 @@
       <path value="$PROJECT_DIR$/vendor/laravolt/avatar" />
       <path value="$PROJECT_DIR$/vendor/danielstjules/stringy" />
       <path value="$PROJECT_DIR$/vendor/liyu/dingo-serializer-switch" />
+      <path value="$PROJECT_DIR$/vendor/summerblue/generator" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
@@ -453,15 +452,15 @@
       <workItem from="1552270890232" duration="1825000" />
       <workItem from="1552293118497" duration="972000" />
       <workItem from="1552364174217" duration="2834000" />
-      <workItem from="1552560991151" duration="2448000" />
+      <workItem from="1552560991151" duration="3010000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97196000" />
+    <option name="totallyTimeSpent" value="97758000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1064" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1064" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20439914" />
@@ -816,10 +815,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_03_14_210144_seed_categories_data.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1015">
-          <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+        <state relative-caret-position="626">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
           <folding>
-            <element signature="e#7#45#0#PHP" expanded="true" />
+            <element signature="e#7#41#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
