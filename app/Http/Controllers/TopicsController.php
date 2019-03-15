@@ -24,6 +24,7 @@ class TopicsController extends Controller
 
     public function show(Topic $topic)
     {
+
         return view('topics.show', compact('topic'));
     }
 
@@ -64,6 +65,7 @@ class TopicsController extends Controller
 		return redirect()->route('topics.index')->with('message', 'Deleted successfully.');
 	}
 
+	// 上传图片
 	public function uploadImage(Request $request, ImageUploadHandler $uploader)
     {
         // 初始化返回数据
