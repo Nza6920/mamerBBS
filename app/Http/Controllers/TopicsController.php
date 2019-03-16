@@ -40,6 +40,7 @@ class TopicsController extends Controller
 
     public function store(TopicRequest $request, Topic $topic)
     {
+        dd($request->all());
         $topic->fill($request->all());
         $topic->user_id = Auth::id();
         $topic->save();
@@ -66,7 +67,7 @@ class TopicsController extends Controller
 		$this->authorize('destroy', $topic);
 		$topic->delete();
 
-		return redirect()->route('topics.index')->with('message', 'Deleted successfully.');
+		return redirect()->route('topics.index')->with('success', '刪除成功!');
 	}
 
 	// 上传图片

@@ -30,6 +30,9 @@ $api->version('v1', [
         // 删除 token
         $api->delete('authorizations/current', 'AuthorizationsController@destroy')
             ->name('api.authorizations.destroy');
+        // 分类接口
+        $api->get('categories', 'CategoriesController@index')
+            ->name('api.categories.index');
 
         /** 测试专用接口 **/
         $api->post('test/destroy', 'TestController@destroy')
