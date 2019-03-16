@@ -27,4 +27,14 @@ class TopicsController extends Controller
 
         return $this->response->item($topic, new TopicTransformer());
     }
+
+    // 删除话题
+    public function destroy(Topic $topic)
+    {
+        $this->authorize('destroy', $topic);
+
+        $topic->delete();
+
+        $this->response->noContent();
+    }
 }
