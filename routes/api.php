@@ -33,6 +33,12 @@ $api->version('v1', [
         // 分类接口
         $api->get('categories', 'CategoriesController@index')
             ->name('api.categories.index');
+        // 话题列表
+        $api->get('topics', 'TopicsController@index')
+            ->name('api.topics.index');
+        // 某个用户的话题
+        $api->get('users/{user}/topics', 'TopicsController@userIndex')
+            ->name('api.users.topics.index');
 
         /** 测试专用接口 **/
         $api->post('test/destroy', 'TestController@destroy')
@@ -60,6 +66,7 @@ $api->version('v1', [
             // 删除话题
             $api->delete('topics/{topic}', 'TopicsController@destroy')
                 ->name('api.topics.destroy');
+
         });
     });
 });

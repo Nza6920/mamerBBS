@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\Api\TopicRequest;
 use App\Models\Topic;
+use App\Models\User;
 use App\Transformers\TopicTransformer;
 use Dingo\Api\Contract\Http\Request;
 
@@ -36,5 +37,36 @@ class TopicsController extends Controller
         $topic->delete();
 
         $this->response->noContent();
+    }
+
+    // 话题列表
+    public function index(Request $request, Topic $topic)
+    {
+        $query = $topic->query();
+        if ($categoryId = $request->category_id) {
+            $query->where('category_id', $categoryId);
+        }
+
+        switch ($request->order) {
+            case 'recent':
+                $query->recent();
+                break;
+
+            default:
+                $query->recentReplied();
+                break;
+        }
+
+        $topics = $query->paginate(15);
+
+        return $this->response->paginator($topics, new TopicTransformer());
+    }
+
+    // 某个用户的话题
+    public function userIndex(User $user, Request $request)
+    {
+        $topics = $user->topics()->recent()->paginate(15);
+
+        return $this->response->paginator($topics, new TopicTransformer());
     }
 }
