@@ -39,6 +39,9 @@ $api->version('v1', [
         // 某个用户的话题
         $api->get('users/{user}/topics', 'TopicsController@userIndex')
             ->name('api.users.topics.index');
+        // 话题详情
+        $api->get('topics/{topic}', 'TopicsController@show')
+            ->name('api.topics.show');
 
         /** 测试专用接口 **/
         $api->post('test/destroy', 'TestController@destroy')
