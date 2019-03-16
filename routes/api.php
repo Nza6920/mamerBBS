@@ -4,7 +4,7 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
-    'middleware' => 'serializer:array'
+    'middleware' => ['serializer:array', 'bindings']
 ], function ($api) {
     $api->group([
         'middleware' => 'api.throttle',
@@ -48,12 +48,16 @@ $api->version('v1', [
             // 图片资源
             $api->post('images', 'ImagesController@store')
                 ->name('api.images.store');
-            // 发布话题
-            $api->post('topics', 'TopicsController@store')
-                ->name('api.topics.store');
             // 编辑登录用户信息
             $api->patch('user', 'UsersController@update')
                 ->name('api.user.update');
+            // 发布话题
+            $api->post('topics', 'TopicsController@store')
+                ->name('api.topics.store');
+            // 编辑话题
+            $api->patch('topics/{topic}', 'TopicsController@update')
+                ->name('api.topics.update');
+
         });
     });
 });
