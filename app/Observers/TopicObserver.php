@@ -13,7 +13,6 @@ class TopicObserver
 {
     public function saving(Topic $topic)
     {
-
         // xss 过滤
         $topic->body = clean($topic->body, 'user_topic_body');
 

@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
+
 class TopicRequest extends Request
 {
     public function rules()
@@ -12,8 +14,8 @@ class TopicRequest extends Request
             case 'POST':
             {
                 return [
-                    'title'       => 'required|min:2|max:50',
-                    'body'        => 'required|min:14',
+                    'title'       => 'required|string|min:2|max:50',
+                    'body'        => 'required|string|min:18',
                     'category_id' => 'required|numeric',
                 ];
             }
@@ -22,8 +24,8 @@ class TopicRequest extends Request
             case 'PATCH':
             {
                 return [
-                    'title'       => 'required|min:2|max:50',
-                    'body'        => 'required|min:14',
+                    'title'       => 'required|string|min:2|max:50',
+                    'body'        => 'required|string|min:18',
                     'category_id' => 'required|numeric',
                 ];
             }
