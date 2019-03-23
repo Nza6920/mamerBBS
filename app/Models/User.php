@@ -27,6 +27,12 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
         return $this->hasMany(Topic::class);
     }
 
+    // 用户拥有很多回复
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
@@ -45,6 +51,7 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
 //            ! file_exists(str_replace(config('app.url'), public_path(), $this->attributes['avatar']))) {
 //            return \Avatar::create($this->attributes['email'])->toBase64();
 //        }
+
         // 方便数据填充
         if ($this->attributes['avatar'] == null) {
             return \Avatar::create($this->attributes['email'])->toBase64();

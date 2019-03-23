@@ -15,7 +15,7 @@ class TopicRequest extends Request
             {
                 return [
                     'title'       => 'required|string|min:2|max:50',
-                    'body'        => 'required|string|min:18',
+                    'body'        => 'required|string|min:14',
                     'category_id' => 'required|numeric',
                 ];
             }
@@ -25,7 +25,7 @@ class TopicRequest extends Request
             {
                 return [
                     'title'       => 'required|string|min:2|max:50',
-                    'body'        => 'required|string|min:18',
+                    'body'        => 'required|string|min:14',
                     'category_id' => 'required|numeric',
                 ];
             }
