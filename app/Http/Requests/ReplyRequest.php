@@ -6,36 +6,16 @@ class ReplyRequest extends Request
 {
     public function rules()
     {
-        switch($this->method())
-        {
-            // CREATE
-            case 'POST':
-            {
-                return [
-                    // CREATE ROLES
-                ];
-            }
-            // UPDATE
-            case 'PUT':
-            case 'PATCH':
-            {
-                return [
-                    // UPDATE ROLES
-                ];
-            }
-            case 'GET':
-            case 'DELETE':
-            default:
-            {
-                return [];
-            };
-        }
+        return [
+          'content1' => 'required|min:2'
+        ];
     }
 
     public function messages()
     {
         return [
-            // Validation messages
+            'content1.required' => '回复内容不能为空',
+            'content1.min' => '回复内容必须大于2'
         ];
     }
 }
