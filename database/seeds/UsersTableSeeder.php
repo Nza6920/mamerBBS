@@ -41,7 +41,7 @@ class UsersTableSeeder extends Seeder
         // 单独处理第一个用户的数据
         $user = User::find(1);
         $user->name = 'admin';
-        $user->email = 'admin@mamer.com';
+        $user->email = '2388426660@qq.com';
         $user->password = bcrypt('qwerty');
         $user->avatar = 'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png';
         $user->save();
