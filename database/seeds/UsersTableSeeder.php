@@ -21,7 +21,6 @@ class UsersTableSeeder extends Seeder
         ];
 
         // 生成数据集合
-        // 生成数据集合
         $users = factory(User::class)
             ->times(10)
             ->make()
