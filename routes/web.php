@@ -28,7 +28,7 @@ Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit'
 
 // 话题路由
 Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
-
+Route::get('topics/{topic}/repliers', 'TopicsController@repliers')->name('topics.repliers');
 Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
 
 // 帖子上传图片

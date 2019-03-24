@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Handlers\ImageUploadHandler;
 use App\Models\Category;
 use App\Models\Topic;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\TopicRequest;
 use Illuminate\Support\Facades\Auth;
@@ -91,5 +92,25 @@ class TopicsController extends Controller
         }
 
         return $data;
+    }
+
+    // 获取当前文章回复
+    public function repliers(Topic $topic)
+    {
+        // 判断是否有回复
+        if (!$topic->reply_count > 0) {
+            return [];
+        }
+
+        $repliers = $topic->replies;
+
+        // 拿到当前文章所有回复的用户(除了当前登陆用户和作者)
+        $users = $repliers->filter(function ($reply, $key) {
+            return $reply->user->id != Auth::user()->id && $reply->user->id != $reply->topic->user->id;
+        })->map(function ($reply, $key) {
+            return $reply->user;
+        });
+
+        return $users->pluck('name');
     }
 }

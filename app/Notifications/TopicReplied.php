@@ -13,11 +13,13 @@ class TopicReplied extends Notification implements ShouldQueue
     use Queueable;
 
     public $reply;
+    public $flag;
 
-    public function __construct(Reply $reply)
+    public function __construct(Reply $reply, $flag = false)
     {
         // 注入回复实体, 方便 toDatabase 方法中使用
         $this->reply = $reply;
+        $this->flag = $flag;
     }
 
     // 在那些频道上发送
@@ -53,7 +55,7 @@ class TopicReplied extends Notification implements ShouldQueue
         $url = $this->reply->topic->link(['#reply' . $this->reply->id]);
 
         return (new MailMessage)
-            ->line('你的话题有新回复!')
+            ->line($this->flag ? '有人在回复中提及了你' : '你的话题有新回复!')
             ->action('查看回复', $url);
     }
 }

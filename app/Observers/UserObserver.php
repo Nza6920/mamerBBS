@@ -25,7 +25,7 @@ class UserObserver
             'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/NDnzMutoxX.png',
         ];
 
-        if (!$user->avatar) {
+        if (empty($user->avatar)) {
             $user->avatar = $faker->randomElement($avatars);
         }
     }
