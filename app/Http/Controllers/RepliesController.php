@@ -32,7 +32,8 @@ class RepliesController extends Controller
         if (!empty($at['reply_user_id'])) {
             $users = User::find($at['reply_user_id']);    // find 方法会自动去除重复的查询
             $users->each(function ($user, $key) use ($reply){
-                if ($user->id != Auth::user()->id && $user->id != $reply->topic->user->id)
+                // 屏蔽当前登陆用户和文章的作者
+                if ($user->id != Auth::user()->id && $user->id != $reply->topic->user_id)
                     $user->notify(new TopicReplied($reply, true));
             });
         }
