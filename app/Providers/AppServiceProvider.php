@@ -41,5 +41,9 @@ class AppServiceProvider extends ServiceProvider
         \API::error(function (\Illuminate\Auth\Access\AuthorizationException $exception) {
             abort(403, $exception->getMessage());
         });
+
+        if (app()->isLocal()) {
+            $this->app->register(\VIACreative\SudoSu\ServiceProvider::class);
+        }
     }
 }
