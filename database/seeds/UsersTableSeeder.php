@@ -44,6 +44,12 @@ class UsersTableSeeder extends Seeder
         $user->password = bcrypt('qwerty');
         $user->avatar = 'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png';
         $user->save();
+        $user->assignRole('Founder');        // 一号默认站长
+
+        // 2号用户指派为 [管理员]
+        $user = User::find(2);
+        $user->assignRole('Maintainer');
+
 
 
     }
