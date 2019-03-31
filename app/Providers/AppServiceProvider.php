@@ -21,15 +21,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
         \Carbon\Carbon::setLocale('zh');
         Topic::observe(TopicObserver::class);
         Reply::observe(ReplyObserver::class);
         User::observe(UserObserver::class);
-        Cache::forget('categories');
-        if (!Cache::has('categories'))
-            Cache::forever('categories', Category::all()->map(function ($category){
+
+        if (!Cache::has('mamerbbs_categories'))
+            Cache::forever('mamerbbs_categories', Category::all()->map(function ($category){
                 return collect($category->only(['id','name']));
             }));
     }

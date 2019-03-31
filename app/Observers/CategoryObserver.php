@@ -16,11 +16,11 @@ class CategoryObserver
 {
     public function saved(Category $category)
     {
-        Cache::forget('categories');
+        Cache::forget('mamerbbs_categories');
     }
 
     public function deleted(Category $category)
     {
-        Cache::forget('categories');
+        Cache::forget('mamerbbs_categories');
     }
 }
