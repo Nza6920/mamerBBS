@@ -9,7 +9,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'LaraBBS') - Mamer 论坛</title>
+    <title>@yield('title', 'MamerBBS') - {{ setting('site_name', 'Mamer 论坛') }}</title>
+    <meta name="description" content="@yield('description', setting('seo_description', 'MamerBBS 爱好者社区。'))" />
+    <meta name="keyword" content="@yield('keyword', setting('seo_keyword', 'MamerBBS,社区,论坛,开发者论坛'))" />
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">

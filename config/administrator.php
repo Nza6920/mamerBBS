@@ -9,7 +9,7 @@ return array(
     'domain' => '',
 
     // 应用名称，在页面标题和左上角站点名称处显示
-    'title' => env('APP_NAME', 'MamerBBS'),
+    'title' => env('APP_ADMIN_NAME_NAME', 'Mamer后台'),
 
     // 模型配置信息文件存放目录
     'model_config_path' => config_path('administrator'),
@@ -46,6 +46,9 @@ return array(
             'categories',
             'topics',
             'replies',
+        ],
+        '站点管理' => [
+            'settings.site',
         ],
     ],
 
