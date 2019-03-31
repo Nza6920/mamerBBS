@@ -3,9 +3,12 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Link;
 use App\Models\Reply;
 use App\Models\Topic;
 use App\Models\User;
+use App\Observers\CategoryObserver;
+use App\Observers\LinkObserver;
 use App\Observers\ReplyObserver;
 use App\Observers\TopicObserver;
 use App\Observers\UserObserver;
@@ -25,11 +28,8 @@ class AppServiceProvider extends ServiceProvider
         Topic::observe(TopicObserver::class);
         Reply::observe(ReplyObserver::class);
         User::observe(UserObserver::class);
-
-        if (!Cache::has('mamerbbs_categories'))
-            Cache::forever('mamerbbs_categories', Category::all()->map(function ($category){
-                return collect($category->only(['id','name']));
-            }));
+        Category::observe(CategoryObserver::class);
+        Link::observe(LinkObserver::class);
     }
 
     /**

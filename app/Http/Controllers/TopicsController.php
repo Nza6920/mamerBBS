@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Handlers\ImageUploadHandler;
 use App\Models\Category;
+use App\Models\Link;
 use App\Models\Topic;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,13 +18,17 @@ class TopicsController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
-    public function index(Request $request, Topic $topic, User $user)
+    // 排序话题
+    public function index(Request $request, Topic $topic, User $user, Link $link)
     {
         $topics = $topic->withOrder($request->order)->paginate(20);
         $active_users = $user->getActiveUsers();
-        return view('topics.index', compact('topics', 'active_users'));
+        $links = $link->getAllCached();
+
+        return view('topics.index', compact('topics', 'active_users', 'links'));
     }
 
+    // 话题详情
     public function show(Request $request, Topic $topic)
     {
         // URL 矫正
@@ -34,12 +39,14 @@ class TopicsController extends Controller
         return view('topics.show', compact('topic'));
     }
 
+    // 创建话题页面
 	public function create(Topic $topic)
 	{
 	    $categories = Category::all();
 		return view('topics.create_and_edit', compact('topic', 'categories'));
 	}
 
+	// 创建话题
     public function store(TopicRequest $request, Topic $topic)
     {
         $topic->fill($request->all());
@@ -49,6 +56,7 @@ class TopicsController extends Controller
         return redirect()->to($topic->link())->with('success', '成功创建话题！');
     }
 
+    // 编辑话题页面
 	public function edit(Topic $topic)
 	{
         $this->authorize('update', $topic);
@@ -56,6 +64,7 @@ class TopicsController extends Controller
 		return view('topics.create_and_edit', compact('topic', 'categories'));
 	}
 
+	// 编辑话题逻辑
 	public function update(TopicRequest $request, Topic $topic)
 	{
 		$this->authorize('update', $topic);
@@ -63,6 +72,7 @@ class TopicsController extends Controller
         return redirect()->to($topic->link())->with('success', '编辑成功！');
 	}
 
+	// 删除话题
 	public function destroy(Topic $topic)
 	{
 		$this->authorize('destroy', $topic);
