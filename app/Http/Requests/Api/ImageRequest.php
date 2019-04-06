@@ -32,6 +32,8 @@ class ImageRequest extends FormRequest
             'image.dimensions' => '太模糊啦, 图片的清晰度不够，宽和高需要 200px 以上',
             'avatar.mimetypes' => '格式错啦, 必须是jpeg,png,jpg,gif格式的图片',
             'avatar.between' => '太大啦, 图片要小于500kb',
+            'topic.mimetypes' => '格式错啦, 必须是jpeg,png,jpg,gif格式的图片',
+            'topic.between' => '太大啦, 图片要小于500kb',
         ];
     }
 }

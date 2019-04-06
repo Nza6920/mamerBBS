@@ -16,7 +16,7 @@ class PagesController extends Controller
     public function permissionDenied()
     {
         // 如果当前用户有权限, 直接访问
-        if (config('administrator.permission')()) {     // 条用闭包函数
+        if (config('administrator.permission')()) {     // 调用闭包函数
             return redirect(url(config('administrator.uri')), 302);
         }
 
