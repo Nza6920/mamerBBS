@@ -47,7 +47,7 @@ class TopicsController extends Controller
             $filename = $fileInfo['folder_name'] . '/' . $fileInfo['file_name'];
 
             // 创建目录
-            Storage::makeDirectory($fileInfo['folder_name']);
+            Storage::disk('public')->makeDirectory($fileInfo['folder_name']);
             Image::make($qrcode)->save('storage/' . $filename);
 
             // 上传 qrcode
