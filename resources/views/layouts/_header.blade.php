@@ -71,6 +71,10 @@
                     </li>
                 @endguest
             </ul>
+
+            {{--@if(!empty($location))--}}
+                {{--<p class="navbar-nav navbar-right" style="margin-left: 20px"> 访问来自: {{$location}}</p>--}}
+            {{--@endif--}}
         </div>
     </div>
 </nav>

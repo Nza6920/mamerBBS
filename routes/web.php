@@ -30,6 +30,8 @@ Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit'
 Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
 Route::get('topics/{topic}/repliers', 'TopicsController@repliers')->name('topics.repliers');
 Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
+Route::get('pdf/topics/{topic}', 'TopicsController@pdf')->name('topics.show.pdf');
+Route::get('image/topics/{topic}', 'TopicsController@image')->name('topics.show.image');
 
 // 帖子上传图片
 Route::post('upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');

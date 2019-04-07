@@ -42,24 +42,32 @@
                     <div class="topic-body mt-4 mb-4">
                         {!! $topic->body !!}
                     </div>
+                    @auth
+                     <div class="operate">
+                            @can('update', $topic)
+                                    <hr>
+                                    <a href="{{ route('topics.edit', $topic->id) }}" class="btn btn-outline-secondary btn-sm" role="button">
+                                        <i class="far fa-edit"></i> 编辑
+                                    </a>
+                                    <form action="{{ route('topics.destroy', $topic->id) }}" method="post"
+                                          style="display: inline-block;"
+                                          onsubmit="return confirm('您确定要删除吗？');">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <button type="submit" class="btn btn-outline-secondary btn-sm">
+                                            <i class="far fa-trash-alt"></i> 删除
+                                        </button>
+                                    </form>
+                            @endcan
 
-                    @can('update', $topic)
-                        <div class="operate">
-                            <hr>
-                            <a href="{{ route('topics.edit', $topic->id) }}" class="btn btn-outline-secondary btn-sm" role="button">
-                                <i class="far fa-edit"></i> 编辑
+                            <a href="{{ route('topics.show.pdf', $topic->id) }}" class="btn btn-outline-secondary btn-sm" role="button">
+                                <i class="far fa-file-pdf"></i> 生成 PDF
                             </a>
-                            <form action="{{ route('topics.destroy', $topic->id) }}" method="post"
-                                  style="display: inline-block;"
-                                  onsubmit="return confirm('您确定要删除吗？');">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-                                <button type="submit" class="btn btn-outline-secondary btn-sm">
-                                    <i class="far fa-trash-alt"></i> 删除
-                                </button>
-                            </form>
+                            <a href="{{ route('topics.show.image', $topic->id) }}" class="btn btn-outline-secondary btn-sm" role="button">
+                                <i class="far fa-file-image"></i> 生成图片
+                            </a>
                         </div>
-                    @endcan
+                    @endauth
 
                 </div>
             </div>
@@ -71,7 +79,6 @@
                     @include('topics._reply_list', ['replies' => $topic->replies()->with('user')->get()])
                 </div>
             </div>
-
         </div>
     </div>
 @stop

@@ -7,9 +7,11 @@ use App\Models\Category;
 use App\Models\Link;
 use App\Models\Topic;
 use App\Models\User;
+use Barryvdh\Snappy\Facades\SnappyImage;
 use Illuminate\Http\Request;
 use App\Http\Requests\TopicRequest;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class TopicsController extends Controller
 {
@@ -35,7 +37,6 @@ class TopicsController extends Controller
         if ( ! empty($topic->slug) && $topic->slug != $request->slug) {
             return redirect($topic->link(), 301);
         }
-
         return view('topics.show', compact('topic'));
     }
 
@@ -123,5 +124,21 @@ class TopicsController extends Controller
         });
 
         return User::find($users)->pluck('name');
+    }
+
+    // 显示 pdf
+    public function pdf(Topic $topic)
+    {
+        return PDF::loadFile(route('topics.show', $topic->id))
+                ->inline('topic-' . $topic->id . '.pdf');
+    }
+
+    // 显示图片
+    public function image(Topic $topic)
+    {
+        return SnappyImage::loadFile(route('topics.show', $topic->id))
+            ->setOption('width', 595)
+            ->setOption('format', 'png')
+            ->inline('topics-' .$topic->id. '.png');
     }
 }
