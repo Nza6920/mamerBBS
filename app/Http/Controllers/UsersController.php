@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Handlers\ImageUploadHandler;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class UsersController extends Controller
 {
@@ -15,8 +17,23 @@ class UsersController extends Controller
     }
 
     // 用户个人界面
-    public function show(User $user)
+    public function show(User $user, ImageUploadHandler $uploader)
     {
+        $qrcode = $user->qrcode;
+
+        if (!$qrcode) {
+            $qrcode = $user->qrcodeByPng();
+            $fileInfo = $uploader->getPath('qrcodes', $user->id, 'png');
+            $filename = $fileInfo['folder_name'] . '/' . $fileInfo['file_name'];
+
+            // 创建目录
+            Storage::makeDirectory($fileInfo['folder_name']);
+            Image::make($qrcode)->save('storage/' . $filename);
+            // 上传 qrcode
+            $user->qrcode = Storage::disk('public')->url($filename);
+            $user->save();
+        }
+
         return view('users.show', compact('user'));
     }
 

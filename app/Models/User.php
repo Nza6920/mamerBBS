@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Support\Facades\Auth;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
@@ -46,7 +47,7 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
     }
 
     protected $fillable = [
-        'name', 'email', 'phone', 'password', 'introduction', 'avatar'
+        'name', 'email', 'phone', 'password', 'introduction', 'avatar', 'qrcode'
     ];
 
     protected $hidden = [
@@ -91,7 +92,6 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
 //        return $this->attributes['avatar'];
 //    }
 
-
     public function isAuthorOf($model)
     {
         return $this->id == $model->user_id;
@@ -119,5 +119,16 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
         }
 
         $this->attributes['avatar'] = $path;
+    }
+
+    // 个人二维码
+    public function qrcodeByPng()
+    {
+        return QrCode::format('png')
+            ->size(300)
+            ->margin(0)
+            ->errorCorrection('H')
+            ->merge(asset('uploads/images/system/logo.png'), 0.3, true)
+            ->generate(route('users.show', $this));
     }
 }

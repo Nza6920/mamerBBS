@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('title', $user->name . ' 的个人中心')
-
 @section('content')
 
     <div class="row">
@@ -18,8 +17,18 @@
                     <hr>
                     <h5><strong>最后活跃</strong></h5>
                     <p title="{{  $user->last_actived_at }}">{{ $user->last_actived_at->diffForHumans() }}</p>
+                    <hr>
+                    <h5><strong>个人名片</strong></h5>
+                    <div class="card-img-bottom">
+                        <div class="media">
+                            <div align="center">
+                                 <img class="card-img-bottom" src=" {{ $user->qrcode  }}">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
 
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
@@ -28,6 +37,8 @@
                     <h1 class="mb-0" style="font-size:22px;">{{ $user->name }} <small>{{ $user->email }}</small></h1>
                 </div>
             </div>
+
+
             <hr>
             {{-- 用户发布的内容 --}}
             <div class="card ">

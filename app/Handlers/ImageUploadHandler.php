@@ -18,27 +18,20 @@ class ImageUploadHandler
             return false;
         }
 
-        // 构建存储的文件夹规则, 值如: uploads/images/avatars/201801/01/
-        // 文件夹切割能让查找的效率更高
-        $folder_name = "uploads/images/$folder/" . date("Ym/d", time());
-
-        // 文件具体存储的物理路径
-        $upload_path = public_path() . '/' .$folder_name;
-
-        // 拼接文件名, 前缀增加辨析度
-        $fileName = $file_prefix . '_' . time() . '_' .str_random(10) . '.' .$extension;
+        // 获取文件上传信息
+        $fileinfo = $this->getPath($folder, $file_prefix, $extension);
 
         // 将图片移动到我们的目标存储路径中
-        $file->move($upload_path, $fileName);
+        $file->move($fileinfo['upload_path'], $fileinfo['file_name']);
 
         // 如果限制了图片宽度，就进行裁剪
         if ($max_width && $extension != 'gif') {
             // 此类中封装的函数，用于裁剪图片
-            $this->reduceSize($upload_path . '/' . $fileName, $max_width);
+            $this->reduceSize($fileinfo['upload_path'] . '/' . $fileinfo['file_name'], $max_width);
         }
 
         return [
-            'path' => config('app.url') . "/$folder_name/$fileName",
+            'path' => config('app.url') . '/' . $fileinfo['folder_name'] . '/'. $fileinfo['file_name'],
         ];
     }
 
@@ -58,5 +51,24 @@ class ImageUploadHandler
 
         // 对图片修改后进行保存
         $image->save();
+    }
+
+    public function getPath($folder, $file_prefix, $extension)
+    {
+        // 构建存储的文件夹规则, 值如: uploads/images/avatars/201801/01/
+        // 文件夹切割能让查找的效率更高
+        $folder_name = "uploads/images/$folder/" . date("Ym/d", time());
+
+        // 文件具体存储的物理路径
+        $upload_path = public_path() . '/' .$folder_name;
+
+        // 拼接文件名, 前缀增加辨析度
+        $fileName = $file_prefix . '_' . time() . '_' .str_random(10) . '.' .$extension;
+
+        return [
+            'upload_path' => $upload_path,
+            'file_name' => $fileName,
+            'folder_name' => $folder_name,
+        ];
     }
 }
