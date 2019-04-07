@@ -21,6 +21,16 @@
                             </a>
                         </div>
                     </div>
+                    <hr>
+                    <div class="text-center">
+                        扫码阅读
+                    </div>
+                    <br>
+                    <div class="media">
+                        <div align="center">
+                            <img class="thumbnail img-fluid" src="{{ $topic->qrcode }}" width="300px" height="300px">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

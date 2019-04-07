@@ -23,7 +23,7 @@ class UsersController extends Controller
 
         if (!$qrcode) {
             $qrcode = $user->qrcodeByPng();
-            $fileInfo = $uploader->getPath('qrcodes', $user->id, 'png');
+            $fileInfo = $uploader->getPath('qrcodes/users', $user->id, 'png');
             $filename = $fileInfo['folder_name'] . '/' . $fileInfo['file_name'];
 
             // 创建目录

@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
 class Topic extends Model
 {
     protected $fillable = [
-        'title', 'body', 'category_id', 'excerpt', 'slug'
+        'title', 'body', 'category_id', 'excerpt', 'slug', 'qrcode'
     ];
 
     // 文章属于话题
@@ -65,5 +67,16 @@ class Topic extends Model
     {
         $this->reply_count = $this->replies->count();
         $this->save();
+    }
+
+    // 个人二维码
+    public function qrcodeByPng()
+    {
+        return QrCode::format('png')
+            ->size(300)
+            ->margin(0)
+            ->errorCorrection('H')
+            ->merge(asset('uploads/images/system/logo.png'), 0.3, true)
+            ->generate(route('users.show', $this));
     }
 }

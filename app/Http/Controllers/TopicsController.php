@@ -11,6 +11,8 @@ use Barryvdh\Snappy\Facades\SnappyImage;
 use Illuminate\Http\Request;
 use App\Http\Requests\TopicRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use PDF;
 
 class TopicsController extends Controller
@@ -31,12 +33,28 @@ class TopicsController extends Controller
     }
 
     // 话题详情
-    public function show(Request $request, Topic $topic)
+    public function show(Request $request, Topic $topic, ImageUploadHandler $uploader)
     {
         // URL 矫正
         if ( ! empty($topic->slug) && $topic->slug != $request->slug) {
             return redirect($topic->link(), 301);
         }
+        $qrcode = $topic->qrcode;
+
+        if (!$qrcode) {
+            $qrcode = $topic->qrcodeByPng();
+            $fileInfo = $uploader->getPath('qrcodes/topics', $topic->id, 'png');
+            $filename = $fileInfo['folder_name'] . '/' . $fileInfo['file_name'];
+
+            // 创建目录
+            Storage::makeDirectory($fileInfo['folder_name']);
+            Image::make($qrcode)->save('storage/' . $filename);
+
+            // 上传 qrcode
+            $topic->qrcode = Storage::disk('public')->url($filename);
+            $topic->save();
+        }
+
         return view('topics.show', compact('topic'));
     }
 
