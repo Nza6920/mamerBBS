@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b59fae1-9844-4b9a-b79e-d2e0cf20da0e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/RepliesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/RepliesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Transformers/ReplyTransformer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Transformers/ReplyTransformer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -89,7 +87,7 @@
           <entry key="js" value="184" />
           <entry key="json" value="28" />
           <entry key="log" value="1" />
-          <entry key="php" value="35293" />
+          <entry key="php" value="35406" />
           <entry key="scss" value="91" />
         </counts>
       </usages-collector>
@@ -102,7 +100,7 @@
           <entry key="JSON" value="11" />
           <entry key="JavaScript" value="184" />
           <entry key="Log" value="1" />
-          <entry key="PHP" value="32787" />
+          <entry key="PHP" value="32900" />
           <entry key="SCSS" value="91" />
           <entry key="composer.json" value="17" />
         </counts>
@@ -135,11 +133,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="49" column="46" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
+            <state relative-caret-position="591">
+              <caret line="85" column="55" selection-start-line="85" selection-start-column="55" selection-end-line="85" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -153,11 +151,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Transformers/ReplyTransformer.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="766">
-              <caret line="33" column="66" selection-start-line="33" selection-start-column="66" selection-end-line="33" selection-end-column="66" />
+            <state relative-caret-position="591">
+              <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
               <folding>
                 <element signature="e#36#57#0#PHP" expanded="true" />
               </folding>
@@ -289,9 +287,9 @@
         <option value="$PROJECT_DIR$/app/Http/Requests/Api/ReplyRequest.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/Api/FormRequest.php" />
         <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/RepliesController.php" />
         <option value="$PROJECT_DIR$/app/Transformers/ReplyTransformer.php" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
       </list>
     </option>
   </component>
@@ -656,12 +654,12 @@
       <workItem from="1555220114939" duration="35000" />
       <workItem from="1555220654336" duration="5949000" />
       <workItem from="1555231814807" duration="2242000" />
-      <workItem from="1555243491647" duration="8430000" />
+      <workItem from="1555243491647" duration="8950000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="243789000" />
+    <option name="totallyTimeSpent" value="244309000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1064" extended-state="6" />
@@ -1014,13 +1012,6 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RepliesController.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="49" column="46" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/RepliesController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="766">
@@ -1033,11 +1024,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Transformers/ReplyTransformer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="766">
-          <caret line="33" column="66" selection-start-line="33" selection-start-column="66" selection-end-line="33" selection-end-column="66" />
+        <state relative-caret-position="591">
+          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
           <folding>
             <element signature="e#36#57#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="591">
+          <caret line="85" column="55" selection-start-line="85" selection-start-column="55" selection-end-line="85" selection-end-column="55" />
         </state>
       </provider>
     </entry>
