@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Request;
 use App\Http\Requests\UserRequest;
 use App\Handlers\ImageUploadHandler;
 use App\Models\User;
@@ -28,9 +29,12 @@ class UsersController extends Controller
 
             // 创建目录
             Storage::disk('public')->makeDirectory($fileInfo['folder_name']);
-            Image::make($qrcode)->save('storage/' . $filename);
+
+            Image::make($qrcode)->save($filename);
+
             // 上传 qrcode
             $user->qrcode = Storage::disk('public')->url($filename);
+
             $user->save();
         }
 

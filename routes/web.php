@@ -1,5 +1,4 @@
 <?php
-
 // 主页路由
 Route::get('/', 'TopicsController@index')->name('root');
 
