@@ -9,6 +9,7 @@ use App\Transformers\ReplyTransformer;
 
 class RepliesController extends Controller
 {
+    // 发布回复
     public function store(ReplyRequest $request, Topic $topic, Reply $reply)
     {
         $reply->content = $request->content1;
@@ -17,5 +18,19 @@ class RepliesController extends Controller
         $reply->save();
 
         return $this->response->item($reply, new ReplyTransformer())->setStatusCode(201);
+    }
+
+    // 删除回复
+    public function destroy(Topic $topic, Reply $reply)
+    {
+        if ($reply->topic_id != $topic->id) {
+            return $this->response->errorBadRequest();
+        }
+
+        // 只有作者和评论的发布人才可以删除
+        $this->authorize('destroy', $reply);
+        $reply->delete();
+
+        return $this->response->noContent();
     }
 }
