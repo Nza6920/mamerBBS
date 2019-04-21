@@ -48,9 +48,13 @@ $api->version('v1', [
         // 某个用户的回复列表
         $api->get('users/{user}/replies', 'RepliesController@userIndex')
             ->name('api.users.replies.index');
+        // 资源推荐
         $api->get('links', 'LinksController@index')
             ->name('api.links.index');
-
+        // 活跃用户
+        $api->get('actived/users', 'UsersController@activedIndex')
+            ->name('api.actived.users.index');
+        
         /** 测试专用接口 **/
         $api->post('test/destroy', 'TestController@destroy')
             ->name('api.test.destroy');
