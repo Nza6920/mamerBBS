@@ -76,7 +76,7 @@ class Topic extends Model
             ->size(300)
             ->margin(0)
             ->errorCorrection('H')
-            ->merge(asset('uploads/images/system/logo.png'), 0.3, true)
+            ->merge(public_path('uploads/images/system/logo.png'), 0.3, true)
             ->generate(route('topics.show', $this));
     }
 }

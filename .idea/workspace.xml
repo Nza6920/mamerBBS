@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6b59fae1-9844-4b9a-b79e-d2e0cf20da0e" name="Default Changelist" comment="" />
+    <list default="true" id="6b59fae1-9844-4b9a-b79e-d2e0cf20da0e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/app/Models/Topic.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Topic.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +52,7 @@
           <entry key="js" value="17" />
           <entry key="json" value="8" />
           <entry key="log" value="7" />
-          <entry key="php" value="766" />
+          <entry key="php" value="768" />
           <entry key="png" value="6" />
           <entry key="scss" value="22" />
           <entry key="svg" value="2" />
@@ -68,7 +70,7 @@
           <entry key="JSON" value="5" />
           <entry key="JavaScript" value="17" />
           <entry key="Log" value="7" />
-          <entry key="PHP" value="635" />
+          <entry key="PHP" value="637" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="SCSS" value="22" />
           <entry key="SVG" value="2" />
@@ -85,7 +87,7 @@
           <entry key="js" value="184" />
           <entry key="json" value="28" />
           <entry key="log" value="1" />
-          <entry key="php" value="36081" />
+          <entry key="php" value="36093" />
           <entry key="scss" value="91" />
         </counts>
       </usages-collector>
@@ -98,7 +100,7 @@
           <entry key="JSON" value="11" />
           <entry key="JavaScript" value="184" />
           <entry key="Log" value="1" />
-          <entry key="PHP" value="33575" />
+          <entry key="PHP" value="33587" />
           <entry key="SCSS" value="91" />
           <entry key="composer.json" value="17" />
         </counts>
@@ -161,11 +163,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Models/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="126" selection-start-line="126" selection-end-line="126" />
+            <state relative-caret-position="241">
+              <caret line="123" column="12" lean-forward="true" selection-start-line="123" selection-start-column="12" selection-end-line="123" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TopicsController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="28">
+              <caret line="35" column="24" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="24" />
+              <folding>
+                <element signature="e#40#76#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Models/Topic.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="488">
+              <caret line="78" column="64" selection-start-line="78" selection-start-column="64" selection-end-line="78" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -200,10 +223,10 @@
       <find>uploader</find>
       <find>rules</find>
       <find>index</find>
-      <find>show</find>
       <find>show(</find>
       <find>url</find>
       <find>APP_URL</find>
+      <find>show</find>
     </findStrings>
     <replaceStrings>
       <replace>App\Models\User</replace>
@@ -248,7 +271,6 @@
         <option value="$PROJECT_DIR$/database/migrations/2019_04_07_192212_add_qrcode_to_users_table.php" />
         <option value="$PROJECT_DIR$/resources/views/users/show.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_04_07_234018_add_qrcode_to_topics_table.php" />
-        <option value="$PROJECT_DIR$/app/Models/Topic.php" />
         <option value="$PROJECT_DIR$/resources/views/topics/show.blade.php" />
         <option value="$PROJECT_DIR$/config/image.php" />
         <option value="$PROJECT_DIR$/resources/views/maintain/maintain.blade.php" />
@@ -263,10 +285,11 @@
         <option value="$PROJECT_DIR$/app/Transformers/NotificationTransformer.php" />
         <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/NotificationsController.php" />
-        <option value="$PROJECT_DIR$/app/Models/User.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/.env.example" />
+        <option value="$PROJECT_DIR$/app/Models/User.php" />
+        <option value="$PROJECT_DIR$/app/Models/Topic.php" />
       </list>
     </option>
   </component>
@@ -629,12 +652,12 @@
       <workItem from="1555220654336" duration="5949000" />
       <workItem from="1555231814807" duration="2242000" />
       <workItem from="1555243491647" duration="10497000" />
-      <workItem from="1555835751338" duration="4853000" />
+      <workItem from="1555835751338" duration="5316000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="250709000" />
+    <option name="totallyTimeSpent" value="251172000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1064" extended-state="6" />
@@ -754,13 +777,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Topic.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="79" column="49" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/topics/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2625">
@@ -809,16 +825,6 @@
     <entry file="file://$PROJECT_DIR$/public/uploads/images/qrcodes/.ignore" />
     <entry file="file://$PROJECT_DIR$/public/uploads/images/qrcodes/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TopicsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="43" column="23" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
-          <folding>
-            <element signature="e#40#76#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/sass/app.scss">
       <provider selected="true" editor-type-id="text-editor">
@@ -1001,8 +1007,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="126" selection-start-line="126" selection-end-line="126" />
+        <state relative-caret-position="241">
+          <caret line="123" column="12" lean-forward="true" selection-start-line="123" selection-start-column="12" selection-end-line="123" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TopicsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="35" column="24" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="24" />
+          <folding>
+            <element signature="e#40#76#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Topic.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="488">
+          <caret line="78" column="64" selection-start-line="78" selection-start-column="64" selection-end-line="78" selection-end-column="64" />
         </state>
       </provider>
     </entry>
