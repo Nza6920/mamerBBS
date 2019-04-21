@@ -48,6 +48,8 @@ $api->version('v1', [
         // 某个用户的回复列表
         $api->get('users/{user}/replies', 'RepliesController@userIndex')
             ->name('api.users.replies.index');
+        $api->get('links', 'LinksController@index')
+            ->name('api.links.index');
 
         /** 测试专用接口 **/
         $api->post('test/destroy', 'TestController@destroy')
