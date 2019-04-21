@@ -4,7 +4,7 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
-    'middleware' => ['serializer:array', 'bindings']
+    'middleware' => ['serializer:array', 'bindings', 'change-locale']
 ], function ($api) {
     $api->group([
         'middleware' => 'api.throttle',
@@ -54,7 +54,7 @@ $api->version('v1', [
         // 活跃用户
         $api->get('actived/users', 'UsersController@activedIndex')
             ->name('api.actived.users.index');
-        
+
         /** 测试专用接口 **/
         $api->post('test/destroy', 'TestController@destroy')
             ->name('api.test.destroy');
