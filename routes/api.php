@@ -90,6 +90,9 @@ $api->version('v1', [
             // 通知消息通知已读
             $api->patch('user/read/notifications', 'NotificationsController@read')
                 ->name('api.user.notifications.read');
+            // 当前登陆用户权限
+            $api->get('user/permission', 'PermissionsController@index')
+                ->name('api.user.permission.index');
         });
     });
 });
