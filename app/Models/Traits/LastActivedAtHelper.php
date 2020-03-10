@@ -4,7 +4,7 @@ namespace App\Models\Traits;
 
 
 use Carbon\Carbon;
-use Redis;
+use Illuminate\Support\Facades\Redis;
 
 trait LastActivedAtHelper
 {
