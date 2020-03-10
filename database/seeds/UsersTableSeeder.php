@@ -10,14 +10,16 @@ class UsersTableSeeder extends Seeder
         // 获取 Faker 实例
         $faker = app(Faker\Generator::class);
 
+        $url = env('APP_URL') . '/uploads/images/system/default';
+
         // 头像假数据
         $avatars = [
-            'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/s5ehp11z6s.png',
-            'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/Lhd1SHqu86.png',
-            'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/LOnMrqbHJn.png',
-            'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/xAuDMxteQy.png',
-            'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png',
-            'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/NDnzMutoxX.png',
+            '/s5ehp11z6s.png',
+            '/Lhd1SHqu86.png',
+            '/LOnMrqbHJn.png',
+            '/xAuDMxteQy.png',
+            '/ZqM7iaP4CR.png',
+            '/NDnzMutoxX.png',
         ];
 
         // 生成数据集合
@@ -25,10 +27,10 @@ class UsersTableSeeder extends Seeder
             ->times(10)
             ->make()
             ->each(function ($user, $index)
-            use ($faker, $avatars)
+            use ($faker, $avatars, $url)
             {
                 // 从头像数组中随机取出一个并赋值
-                $user->avatar = $faker->randomElement($avatars);
+                $user->avatar = $url . $faker->randomElement($avatars);
             });
 
         // 让隐藏字段可见，并将数据集合转换为数组
