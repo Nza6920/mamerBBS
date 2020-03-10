@@ -70,14 +70,14 @@
                                     </form>
                             @endcan
 
-                            @if(app()->isLocal())
+{{--                            @if(app()->isLocal())--}}
                                 <a href="{{ route('topics.show.pdf', $topic->id) }}" class="btn btn-outline-secondary btn-sm" role="button">
                                     <i class="far fa-file-pdf"></i> 生成 PDF
                                 </a>
                                 <a href="{{ route('topics.show.image', $topic->id) }}" class="btn btn-outline-secondary btn-sm" role="button">
                                     <i class="far fa-file-image"></i> 生成图片
                                 </a>
-                            @endIf
+                            {{--@endIf--}}
                         </div>
                     @endauth
 
