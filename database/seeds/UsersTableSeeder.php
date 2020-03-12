@@ -44,7 +44,7 @@ class UsersTableSeeder extends Seeder
         $user->name = 'admin';
         $user->email = '2388426660@qq.com';
         $user->password = bcrypt('qwerty');
-        $user->avatar = 'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png';
+        $user->avatar = $url . '/ZqM7iaP4CR.png';
         $user->save();
         $user->assignRole('Founder');        // 一号默认站长
 

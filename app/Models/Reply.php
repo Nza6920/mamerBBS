@@ -24,7 +24,7 @@ class Reply extends Model
         $reply_user_id=[];
 
         preg_match_all("/@.*?(?=( |$))/",$content,$userName);
-
+        
         foreach($userName[0] as $key => $name) {
             $name=substr($name,1);
             $user_id  = User::where('name','like binary',$name)->value('id');
