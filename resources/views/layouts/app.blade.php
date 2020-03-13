@@ -36,7 +36,7 @@
         @include('layouts._footer')
     </div>
 
-    @if (app()->isLocal() && config('sudosu.enable'))
+    @if (config('sudosu.enable'))
         @include('sudosu::user-selector')
     @endif
 
