@@ -46,3 +46,7 @@ Route::resource('notifications', 'NotificationsController', ['only' => ['index']
 
 // 无权限提醒路由
 Route::get('permission-denied', 'PagesController@permissionDenied')->name('permission-denied');
+
+// 三方登陆
+Route::get('/github/login', 'SocialController@githubLogin')->name('social.github.login');
+Route::get('/github/callback', 'SocialController@githubCallback')->name('social.github.callback');

@@ -6,7 +6,6 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
-
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -56,7 +55,6 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
-
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
@@ -65,6 +63,19 @@
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+            <div class="social-wrap">
+                <div class="social-header">
+                    <span>第三方登陆</span>
+                </div>
+                <div class="social-content">
+                    <a  href="{{ route('social.github.login')  }}">
+                        <img src="{{ env('APP_URL') . '/uploads/images/system/github.png' }}" alt="github" class="img-circle">
+                    </a>
+                </div>
+                <div class="social-footer">
+                    <hr />
                 </div>
             </div>
         </div>

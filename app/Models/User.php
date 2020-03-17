@@ -48,7 +48,7 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
 
     protected $fillable = [
         'name', 'email', 'phone', 'password', 'introduction', 'avatar', 'qrcode',
-        'weixin_openid', 'weixin_unionid'
+        'weixin_openid', 'weixin_unionid', 'github_id'
     ];
 
     protected $hidden = [
@@ -113,7 +113,7 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
     public function setAvatarAttribute($path)
     {
         // 如果不是 `http` 子串开头，那就是从后台上传的，需要补全 URL
-        if ( ! starts_with($path, 'http')) {
+        if ( $path != null && ! starts_with($path, 'http')  ) {
 
             // 拼接完整的 URL
             $path = config('app.url') . "/uploads/images/avatars/$path";

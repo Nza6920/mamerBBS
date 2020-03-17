@@ -14,19 +14,19 @@ class UserObserver
     public function creating(User $user)
     {
         $faker = app(Generator::class);
-
+        $url = env('APP_URL') . '/uploads/images/system/default';
         // 头像假数据
         $avatars = [
-            'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/s5ehp11z6s.png',
-            'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/Lhd1SHqu86.png',
-            'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/LOnMrqbHJn.png',
-            'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/xAuDMxteQy.png',
-            'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png',
-            'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/NDnzMutoxX.png',
+            '/s5ehp11z6s.png',
+            '/Lhd1SHqu86.png',
+            '/LOnMrqbHJn.png',
+            '/xAuDMxteQy.png',
+            '/ZqM7iaP4CR.png',
+            '/NDnzMutoxX.png',
         ];
 
         if (empty($user->avatar)) {
-            $user->avatar = $faker->randomElement($avatars);
+            $user->avatar = $url . $faker->randomElement($avatars);
         }
     }
 }

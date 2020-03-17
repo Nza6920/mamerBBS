@@ -170,3 +170,24 @@ body {
         background-color: #d15b47 !important;
     }
 }
+
+/* 三方登陆 */
+.social-wrap {
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    .social-header {
+        padding: 10px;
+        margin-bottom: 13px;
+    }
+    .social-content {
+        display: inline-block;
+    }
+    .social-footer {
+        hr {
+            margin-top: 8px;
+        }
+    }
+}
+
