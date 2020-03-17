@@ -31,6 +31,7 @@
         "overtrue/pinyin": "~3.0",
         "predis/predis": "~1.1",
         "simplesoftwareio/simple-qrcode": "^2.0",
+        "socialiteproviders/weixin": "^4.0",
         "spatie/laravel-permission": "~2.29",
         "summerblue/administrator": "~1.1",
         "torann/geoip": "^1.0",
