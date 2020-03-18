@@ -8,6 +8,7 @@
 
     <div class="media-body">
         <div class="media-heading mt-0 mb-1 text-secondary">
+            用户
             <a href="{{ route('users.show', $notification->data['user_id']) }}">{{ $notification->data['user_name'] }}</a>
             关注了您 !
             <span class="meta float-right" title="{{ $notification->created_at }}">

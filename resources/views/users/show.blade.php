@@ -9,12 +9,21 @@
             <div class="card ">
                 <img class="card-img-top" src="{{ $user->avatar }}" alt="{{ $user->name }}">
                 <div class="card-body">
+                    @if (Auth::check())
+                        @include('users._follow_form')
+                    @endif
+                    <div class="stats mt-2">
+                        <div class="stats-wrap">
+                            @include('shared._stats', ['user' => $user])
+                        </div>
+                    </div>
+                    <hr>
                     <h5><strong>个人简介</strong></h5>
                     <p>{{ $user->introduction }}</p>
                     <hr>
                     <h5><strong>注册于</strong></h5>
-                    <p>{{ $user->created_at->diffForHumans() }}</p>
-                    <hr>
+                    <p>{{ $user->created_at->diffForHumans() }}<p>
+                    <har>
                     <h5><strong>最后活跃</strong></h5>
                     <p title="{{  $user->last_actived_at }}">{{ $user->last_actived_at->diffForHumans() }}</p>
                     <hr>
@@ -56,9 +65,9 @@
                         </li>
                     </ul>
                     @if (if_query('tab', 'replies'))
-                        @include('users._replies', ['replies' => $user->replies()->with('topic')->recent()->paginate(5)])
+                        @include('users._replies', ['replies' => $user->replies()->with('topic')->recent()->paginate(6)])
                     @else
-                        @include('users._topics', ['topics' => $user->topics()->recent()->paginate(5)])
+                        @include('users._topics', ['topics' => $user->topics()->recent()->paginate(6)])
                     @endif
                 </div>
             </div>

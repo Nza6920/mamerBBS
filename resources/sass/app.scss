@@ -191,3 +191,43 @@ body {
     }
 }
 
+/**粉丝数***/
+.stats {
+    overflow: auto;
+    margin-top: 0;
+    padding: 0;
+    a {
+        float: left;
+        padding: 0 10px;
+        text-align: center;
+        width: 33%;
+        border-left: 1px solid #eee;
+        color: #33383c;
+        &:first-child {
+            padding-left: 0;
+            border: 0;
+        }
+        &:hover {
+            text-decoration: none;
+            color: #337ab7;
+        }
+    }
+    strong {
+        display: block;
+        font-size: 1.2em;
+        color: black;
+    }
+    .stats-wrap {
+        position: relative;
+        float: left;
+        width: 73%;
+        left: 27%;
+    }
+}
+
+.follow-list {
+    .list-group-item {
+        background-color: inherit !important;
+    }
+}
+

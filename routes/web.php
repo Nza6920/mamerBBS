@@ -24,6 +24,12 @@ Route::get('email/resend', 'Auth\VerificationController@resend')->name('verifica
 
 // 用户路由
 Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
+Route::get('/users/{user}/followings', 'UsersController@followings')->name('users.followings');
+Route::get('/users/{user}/followers', 'UsersController@followers')->name('users.followers');
+
+// 关注与取关
+Route::post('/users/followers/{user}', 'FollowersController@store')->name('followers.store');
+Route::delete('/users/followers/{user}', 'FollowersController@destroy')->name('followers.destroy');
 
 // 话题路由
 Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
