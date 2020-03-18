@@ -113,7 +113,7 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
     public function setAvatarAttribute($path)
     {
         // 如果不是 `http` 子串开头，那就是从后台上传的，需要补全 URL
-        if ( $path != null && ! starts_with($path, 'http')  ) {
+        if ($path != null && !starts_with($path, 'http')) {
 
             // 拼接完整的 URL
             $path = config('app.url') . "/uploads/images/avatars/$path";
@@ -131,5 +131,41 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
             ->errorCorrection('H')
             ->merge(public_path('uploads/images/system/logo.png'), 0.3, true)
             ->generate(route('users.show', $this));
+    }
+
+    // 粉丝
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+    }
+
+    // 关注的人
+    public function followings()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
+    }
+
+    // 关注
+    public function follow($user_ids)
+    {
+        if (!is_array($user_ids)) {
+            $user_ids = compact('user_ids');
+        }
+        $this->followings()->sync($user_ids, false);
+    }
+
+    // 取关
+    public function unfollow($user_ids)
+    {
+        if (!is_array($user_ids)) {
+            $user_ids = compact('user_ids');
+        }
+        $this->followings()->detach($user_ids);
+    }
+
+    // 判断是否关注了某人
+    public function isFollowing($user_id)
+    {
+        return $this->followings->contains($user_id);
     }
 }
