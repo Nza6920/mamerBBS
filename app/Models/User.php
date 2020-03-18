@@ -138,14 +138,14 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
     // 粉丝
     public function followers()
     {
-        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id')
+        return $this->belongsToMany('App\Models\User', 'followers', 'user_id', 'follower_id')
                     ->withTimestamps();
     }
 
     // 关注的人
     public function followings()
     {
-        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id')
+        return $this->belongsToMany('App\Models\User', 'followers', 'follower_id', 'user_id')
                     ->withTimestamps();
     }
 

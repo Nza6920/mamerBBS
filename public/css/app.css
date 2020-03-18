@@ -17034,3 +17034,7 @@ body {
   background-color: inherit !important;
 }
 
+.my-notify-list .border-bottom {
+  margin-bottom: 10px !important;
+}
+

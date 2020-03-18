@@ -16,7 +16,7 @@
 
                     @if ($notifications->count())
 
-                        <div class="list-unstyled notification-list">
+                        <div class="list-unstyled notification-list my-notify-list">
                             @foreach ($notifications as $notification)
                                 @include('notifications.types._' . snake_case(class_basename($notification->type)))
                             @endforeach
