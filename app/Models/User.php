@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Notifications\FollowReminders;
+use App\Notifications\UserFollow;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
@@ -136,13 +138,15 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
     // 粉丝
     public function followers()
     {
-        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id')
+                    ->withTimestamps();
     }
 
     // 关注的人
     public function followings()
     {
-        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id')
+                    ->withTimestamps();
     }
 
     // 关注
@@ -152,10 +156,17 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
             $user_ids = compact('user_ids');
         }
         $this->followings()->sync($user_ids, false);
+
+        // 发送通知
+        foreach ($user_ids as $user_id) {
+            if ($user = User::find($user_id)) {
+                $user->notify(new FollowReminders($this));
+            }
+        }
     }
 
     // 取关
-    public function unfollow($user_ids)
+    public function unFollow($user_ids)
     {
         if (!is_array($user_ids)) {
             $user_ids = compact('user_ids');
@@ -167,5 +178,11 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
     public function isFollowing($user_id)
     {
         return $this->followings->contains($user_id);
+    }
+
+    // 生成用户链接
+    public function link($params = [])
+    {
+        return route('users.show', array_merge([$this->id], $params));
     }
 }
