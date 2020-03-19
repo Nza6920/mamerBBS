@@ -31,7 +31,7 @@ class SocialController extends Controller
         } else {
             $driver = 'github';
 
-            $val = '<span>此账号还未注册, 请先注册(*^▽^*)</span><a href=' . route('social.bind.show') . 'style="margin-left: 1%">已有账号? 前去绑定.</a>';
+            $val = '<span>此账号还未注册, 请先注册(*^▽^*)</span><a href="' . route('social.bind.show') . '" style="margin-left: 1%">已有账号? 前去绑定.</a>';
             session()->flash('info', $val);
             $this->saveToSession('github', $socialUser->id, $socialUser->avatar);
             return view('auth.register', compact('socialUser', 'driver'));
