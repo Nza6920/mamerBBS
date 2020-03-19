@@ -44,6 +44,7 @@ class FollowReminders extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->line('用户 '. $this->user->name .' 关注了您!')
-            ->action('查看详情', $this->user->link());
+            ->action('查看详情', $this->user->link())
+            ->line('感谢您使用 Mamer论坛 !');
     }
 }

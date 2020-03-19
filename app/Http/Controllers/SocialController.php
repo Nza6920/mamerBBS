@@ -30,7 +30,9 @@ class SocialController extends Controller
             return redirect()->to('/');
         } else {
             $driver = 'github';
-            session()->flash('info', '此账号还未注册, 请先注册(*^▽^*)');
+
+            $val = '<span>此账号还未注册, 请先注册(*^▽^*)</span><a href=' . route('social.bind.show') . 'style="margin-left: 1%">已有账号? 前去绑定.</a>';
+            session()->flash('info', $val);
             $this->saveToSession('github', $socialUser->id, $socialUser->avatar);
             return view('auth.register', compact('socialUser', 'driver'));
         }
@@ -53,7 +55,8 @@ class SocialController extends Controller
             return redirect()->to('/');
         } else {
             $driver = 'qq';
-            session()->flash('info', '此账号还未注册, 请先注册(*^▽^*)');
+            $val = '<span>此账号还未注册, 请先注册(*^▽^*)</span><a href="' . route('social.bind.show') . '" style="margin-left: 1%">已有账号? 前去绑定.</a>';
+            session()->flash('info', $val);
             $this->saveToSession('qq', $socialUser->id, $socialUser->avatar);
             return view('auth.register', compact('socialUser', 'driver'));
         }

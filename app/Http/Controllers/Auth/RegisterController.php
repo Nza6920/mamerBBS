@@ -74,20 +74,8 @@ class RegisterController extends Controller
             $userArr['avatar'] = $data['avatar'];
         }
 
-        $this->forgetFromSession();
+        forgetSocialInfoFromSession();
 
         return User::create($userArr);
-    }
-
-    protected function forgetFromSession() {
-        if (session()->has('driver')) {
-            session()->forget('driver');
-        }
-        if (session()->has('id')) {
-            session()->forget('id');
-        }
-        if (session()->has('avatar')) {
-            session()->forget('avatar');
-        }
     }
 }

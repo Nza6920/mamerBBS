@@ -28,12 +28,12 @@ class UserRequest extends FormRequest
     public function messages()
     {
         return [
-            'avatar.mimetypes' => '格式错啦, 必须是jpeg,png,jpg,gif格式的图片',
-            'avatar.dimensions' => '太模糊啦, 清晰度不够，宽和高需要 208px 以上',
-            'avatar.between' => '太大啦, 图片要小于500kb',
-            'name.regex' => '格式错啦, 用户名只能由字母, 数字, 中文组成',
-            'name.unique' => '重名啦, 用户名已被占用',
-            'introduction.max' => '经历有点多哦, 个人简介最大不能超过50个字'
+            'avatar.mimetypes' => '必须是jpeg,png,jpg,gif格式的图片',
+            'avatar.dimensions' => '清晰度不够，宽和高需要 208px 以上',
+            'avatar.between' => '图片要小于500kb',
+            'name.regex' => '用户名只能由字母, 数字, 中文组成',
+            'name.unique' => '用户名已被占用',
+            'introduction.max' => '个人简介最大不能超过50个字'
         ];
     }
 

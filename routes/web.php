@@ -58,3 +58,8 @@ Route::get('/github/login', 'SocialController@githubLogin')->name('social.github
 Route::get('/github/callback', 'SocialController@githubCallback')->name('social.github.callback');
 Route::get('/qq/login', 'SocialController@qqLogin')->name('social.qq.login');
 Route::get('/qq/callback', 'SocialController@qqCallback')->name('social.qq.callback');
+
+// 账号绑定
+Route::get('/socials/bind', 'SocialBindsController@show')->name('social.bind.show');
+Route::post('/socials/verify', 'SocialBindsController@sendEmail')->name('social.bind.verify');
+Route::get('/socials/confirm/{id}', 'SocialBindsController@confirmEmail')->name('social.bind.confirm');

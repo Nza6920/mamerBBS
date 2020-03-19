@@ -56,6 +56,7 @@ class TopicReplied extends Notification implements ShouldQueue
 
         return (new MailMessage)
             ->line($this->flag ? '有人在回复中提及了你' : '你的话题有新回复!')
-            ->action('查看回复', $url);
+            ->action('查看回复', $url)
+            ->line('感谢您使用 Mamer论坛 !');
     }
 }
