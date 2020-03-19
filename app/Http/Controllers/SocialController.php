@@ -31,7 +31,39 @@ class SocialController extends Controller
         } else {
             $driver = 'github';
             session()->flash('info', '此账号还未注册, 请先注册(*^▽^*)');
+            $this->saveToSession('github', $socialUser->id, $socialUser->avatar);
             return view('auth.register', compact('socialUser', 'driver'));
+        }
+    }
+
+    // qq 登陆
+    public function qqLogin()
+    {
+        return Socialite::with('qq')->redirect();
+    }
+
+    // qq 回调
+    public function qqCallback()
+    {
+        $socialUser = Socialite::driver('qq')->user();
+
+        // 判断用户是否已经注册, 未注册跳转到注册页面
+        if ($user = User::where('qq_id', '=', $socialUser->id)->first()) {
+            Auth::login($user);
+            return redirect()->to('/');
+        } else {
+            $driver = 'qq';
+            session()->flash('info', '此账号还未注册, 请先注册(*^▽^*)');
+            $this->saveToSession('qq', $socialUser->id, $socialUser->avatar);
+            return view('auth.register', compact('socialUser', 'driver'));
+        }
+    }
+
+    protected function saveToSession($driver, $id, $avatar = null) {
+        session()->put('driver', $driver);
+        session()->put('id', $id);
+        if ($avatar) {
+            session()->put('avatar', $avatar);
         }
     }
 }

@@ -21,6 +21,20 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    // 注册
+    public function register(Request $request)
+    {
+        $data = $request->all();
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($data)));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
+    }
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -38,6 +52,7 @@ class RegisterController extends Controller
         ]);
     }
 
+
     protected function create(array $data)
     {
         $userArr = [
@@ -50,11 +65,29 @@ class RegisterController extends Controller
         if (isset($data['github_id'])) {
             $userArr['github_id'] = $data['github_id'];
         }
+        // 添加 qq_id
+        if (isset($data['qq_id'])) {
+            $userArr['qq_id'] = $data['qq_id'];
+        }
         // 添加 头像
         if (isset($data['avatar'])) {
             $userArr['avatar'] = $data['avatar'];
         }
 
+        $this->forgetFromSession();
+
         return User::create($userArr);
+    }
+
+    protected function forgetFromSession() {
+        if (session()->has('driver')) {
+            session()->forget('driver');
+        }
+        if (session()->has('id')) {
+            session()->forget('id');
+        }
+        if (session()->has('avatar')) {
+            session()->forget('avatar');
+        }
     }
 }

@@ -56,3 +56,5 @@ Route::get('permission-denied', 'PagesController@permissionDenied')->name('permi
 // 三方登陆
 Route::get('/github/login', 'SocialController@githubLogin')->name('social.github.login');
 Route::get('/github/callback', 'SocialController@githubCallback')->name('social.github.callback');
+Route::get('/qq/login', 'SocialController@qqLogin')->name('social.qq.login');
+Route::get('/qq/callback', 'SocialController@qqCallback')->name('social.qq.callback');

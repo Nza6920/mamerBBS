@@ -71,7 +71,10 @@
                 </div>
                 <div class="social-content">
                     <a  href="{{ route('social.github.login')  }}">
-                        <img src="{{ env('APP_URL') . '/uploads/images/system/github.png' }}" alt="github" class="img-circle">
+                        <img src="{{ env('APP_URL') . '/uploads/images/system/github.png' }}" alt="github_login" class="img-circle">
+                    </a>
+                    <a  href="{{ route('social.qq.login')  }}">
+                        <img src="{{ env('APP_URL') . '/uploads/images/system/qq.png' }}" alt="qq_login" class="img-circle">
                     </a>
                 </div>
                 <div class="social-footer">

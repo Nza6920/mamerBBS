@@ -10,13 +10,15 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-                        @if(isset($driver) && isset($socialUser))
-                            @switch($driver)
+                        @if(session()->has('driver') && session()->has('id'))
+                            @switch(session()->get('driver'))
                                 @case('github')
-                                    <input type="hidden" name="github_id" value="{{ $socialUser->id }}">
-                                    <input type="hidden" name="avatar" value="{{ $socialUser->avatar }}">
+                                    <input type="hidden" name="github_id" value="{{ session()->get('id') }}">
+                                    <input type="hidden" name="avatar" value="{{ session()->get('avatar') }}">
                                 @break
                                 @case('qq')
+                                    <input type="hidden" name="qq_id" value="{{ session()->get('id') }}">
+                                    <input type="hidden" name="avatar" value="{{ session()->get('avatar') }}">
                                 @break
                                 @default
                                 @break
@@ -102,4 +104,10 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    window.history.pushState(null, null, '/register?type=social')
+</script>
 @endsection
