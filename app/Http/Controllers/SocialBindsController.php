@@ -29,8 +29,15 @@ class SocialBindsController extends Controller
     {
         $email = $request->email;
         $user = User::where('email', '=', $email)->first();
+
+        if (session()->get('driver') === 'qq' && isset($user->qq_id)) {
+            return back()->with('info', '该账号已绑定过qq, 请直接登陆.');
+        } else if (isset($user->github_id)) {
+            return back()->with('info', '该账号已绑定过github, 请直接登陆.');
+        }
+
         $user->notify(new SocialBinds($user->id));
-        session()->flash('success', '绑定邮件已发送至您的邮箱.');
+        session()->flash('success', '绑定邮件已发送至您的邮箱, 请用当前浏览器打开链接.');
         return back();
     }
 
@@ -38,7 +45,7 @@ class SocialBindsController extends Controller
     {
         // 判断参数
         if (! (($driver = session()->get('driver')) && ($id = session()->get('id')) && ($user = User::find($userId)))) {
-            return redirect()->route('login')->with('danger', '请求超时请重试');
+            return redirect()->route('login')->with('danger', '无效的链接, 请重试.');
         }
 
         switch ($driver) {
