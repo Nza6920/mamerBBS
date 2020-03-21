@@ -4,7 +4,7 @@
             <form action="{{ route('topics.vote.up', $topic->id) }}" method="POST">
                 {{ csrf_field() }}
                 <button type="submit" class="btn btn-primary">
-                    <i class="fa fa-thumbs-o-up"></i>
+                    <i class="fa fa-thumbs-up"></i>
                     <span>点个赞</span>
                 </button>
             </form>
