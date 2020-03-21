@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Support\Facades\Auth;
+use Jcc\LaravelVote\Vote;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -19,6 +20,7 @@ class User extends Authenticatable implements MustVerifyEmailContract, JWTSubjec
     use MustVerifyEmailTrait, HasRoles;
     use Traits\ActiveUserHelper;
     use Traits\LastActivedAtHelper;
+    use Vote;
 
     use Notifiable {
         notify as protected laravelNotify;

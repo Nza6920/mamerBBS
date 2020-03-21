@@ -171,6 +171,28 @@ body {
     }
 }
 
+/* 点赞区域 */
+.vote-box {
+    .buttons {
+        text-align: center;
+        button {
+            min-width: 12%;
+            min-height: 38px;
+        }
+    }
+    .voted-users {
+        margin: 14px 14px 16px;
+        a {
+            margin: 5px;
+        }
+        img {
+            border-radius: 50px;
+            box-shadow: -2px 0px 2px 0.5px #ddd,0px -2px 2px 0.5px #ddd,2px 0px 3px 0.5px #ddd,0px 2px 2px 0.5px #ddd;
+            margin-top: 12px;
+        }
+    }
+}
+
 /* 三方登陆 */
 .social-wrap {
     margin-top: 20px;

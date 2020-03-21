@@ -84,6 +84,13 @@
                 </div>
             </div>
 
+            {{-- 用户点赞列表 --}}
+            <div class="card topic-vote mt-4">
+                <div class="card-body">
+                    @includeWhen(Auth::check(), 'topics._topic_vote', ['users' => $topic->voters->pluck('avatar', 'id')->all(), 'topic' => $topic])
+                </div>
+            </div>
+
             {{-- 用户回复列表 --}}
             <div class="card topic-reply mt-4">
                 <div class="card-body">

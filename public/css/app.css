@@ -16968,6 +16968,31 @@ body {
   background-color: #d15b47 !important;
 }
 
+/* 点赞区域 */
+
+.vote-box .buttons {
+  text-align: center;
+}
+
+.vote-box .buttons button {
+  min-width: 12%;
+  min-height: 38px;
+}
+
+.vote-box .voted-users {
+  margin: 14px 14px 16px;
+}
+
+.vote-box .voted-users a {
+  margin: 5px;
+}
+
+.vote-box .voted-users img {
+  border-radius: 50px;
+  box-shadow: -2px 0px 2px 0.5px #ddd, 0px -2px 2px 0.5px #ddd, 2px 0px 3px 0.5px #ddd, 0px 2px 2px 0.5px #ddd;
+  margin-top: 12px;
+}
+
 /* 三方登陆 */
 
 .social-wrap {

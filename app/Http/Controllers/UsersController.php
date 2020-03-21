@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Request;
 use App\Http\Requests\UserRequest;
 use App\Handlers\ImageUploadHandler;
+use App\Models\Topic;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -60,7 +61,7 @@ class UsersController extends Controller
 
             $result = $uploader->save($request->avatar, 'avatars', $user->id, 416);
             // 图片格式不正确
-            if (! $result) {
+            if (!$result) {
                 return redirect()->back()->with('errors', collect(['格式错啦, 头像必须是jpeg,png,jpg,gif格式的图片']));
             }
             $data['avatar'] = $result['path'];

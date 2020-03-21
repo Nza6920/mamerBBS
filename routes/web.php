@@ -32,11 +32,14 @@ Route::post('/users/followers/{user}', 'FollowersController@store')->name('follo
 Route::delete('/users/followers/{user}', 'FollowersController@destroy')->name('followers.destroy');
 
 // 话题路由
-Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::post('topics/{topic}/votes', 'TopicsController@upVote')->name('topics.vote.up');
+Route::delete('topics/{topic}/votes', 'TopicsController@cancelVote')->name('topics.vote.cancel');
 Route::get('topics/{topic}/repliers', 'TopicsController@repliers')->name('topics.repliers');
-Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
+Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
 Route::get('pdf/topics/{topic}', 'TopicsController@pdf')->name('topics.show.pdf');
 Route::get('image/topics/{topic}', 'TopicsController@image')->name('topics.show.image');
+Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
+
 
 // 帖子上传图片
 Route::post('upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');

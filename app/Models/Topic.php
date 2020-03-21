@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+use Jcc\LaravelVote\CanBeVoted;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class Topic extends Model
 {
+    use CanBeVoted;
+
+    protected $vote = User::class;
+
     protected $fillable = [
         'title', 'body', 'category_id', 'excerpt', 'slug', 'qrcode'
     ];

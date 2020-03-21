@@ -63,9 +63,16 @@
                                 Ta 的回复
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link bg-transparent {{ active_class(if_query('tab', 'votes')) }}" href="{{ route('users.show', [$user->id, 'tab' => 'votes']) }}">
+                                Ta 的点赞
+                            </a>
+                        </li>
                     </ul>
                     @if (if_query('tab', 'replies'))
                         @include('users._replies', ['replies' => $user->replies()->with('topic')->recent()->paginate(6)])
+                    @elseif (if_query('tab', 'votes'))
+                        @include('users._votes', ['topics' => $user->votedItems(App\Models\Topic::class)->paginate(6)])
                     @else
                         @include('users._topics', ['topics' => $user->topics()->recent()->paginate(6)])
                     @endif

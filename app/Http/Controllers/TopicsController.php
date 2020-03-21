@@ -36,7 +36,7 @@ class TopicsController extends Controller
     public function show(Request $request, Topic $topic, ImageUploadHandler $uploader)
     {
         // URL 矫正
-        if ( ! empty($topic->slug) && $topic->slug != $request->slug) {
+        if (!empty($topic->slug) && $topic->slug != $request->slug) {
             return redirect($topic->link(), 301);
         }
         $qrcode = $topic->qrcode;
@@ -60,13 +60,13 @@ class TopicsController extends Controller
     }
 
     // 创建话题页面
-	public function create(Topic $topic)
-	{
-	    $categories = Category::all();
-		return view('topics.create_and_edit', compact('topic', 'categories'));
-	}
+    public function create(Topic $topic)
+    {
+        $categories = Category::all();
+        return view('topics.create_and_edit', compact('topic', 'categories'));
+    }
 
-	// 创建话题
+    // 创建话题
     public function store(TopicRequest $request, Topic $topic)
     {
         $topic->fill($request->all());
@@ -77,32 +77,32 @@ class TopicsController extends Controller
     }
 
     // 编辑话题页面
-	public function edit(Topic $topic)
-	{
+    public function edit(Topic $topic)
+    {
         $this->authorize('update', $topic);
         $categories = Category::all();
-		return view('topics.create_and_edit', compact('topic', 'categories'));
-	}
+        return view('topics.create_and_edit', compact('topic', 'categories'));
+    }
 
-	// 编辑话题逻辑
-	public function update(TopicRequest $request, Topic $topic)
-	{
-		$this->authorize('update', $topic);
-		$topic->update($request->all());
+    // 编辑话题逻辑
+    public function update(TopicRequest $request, Topic $topic)
+    {
+        $this->authorize('update', $topic);
+        $topic->update($request->all());
         return redirect()->to($topic->link())->with('success', '编辑成功！');
-	}
+    }
 
-	// 删除话题
-	public function destroy(Topic $topic)
-	{
-		$this->authorize('destroy', $topic);
-		$topic->delete();
+    // 删除话题
+    public function destroy(Topic $topic)
+    {
+        $this->authorize('destroy', $topic);
+        $topic->delete();
 
-		return redirect()->route('topics.index')->with('success', '刪除成功!');
-	}
+        return redirect()->route('topics.index')->with('success', '刪除成功!');
+    }
 
-	// 上传图片
-	public function uploadImage(Request $request, ImageUploadHandler $uploader)
+    // 上传图片
+    public function uploadImage(Request $request, ImageUploadHandler $uploader)
     {
         // 初始化返回数据
         $data = [
@@ -113,12 +113,12 @@ class TopicsController extends Controller
         // 判断是否有上传文件, 并赋值给 $file
         if ($file = $request->upload_file) {
             // 保存图片到本地
-            $result = $uploader->save($file, 'topics', \Auth::id(), 1024 );
+            $result = $uploader->save($file, 'topics', \Auth::id(), 1024);
             // 图片保存到本地
             if ($result) {
                 $data['file_path'] = $result['path'];
-                $data['msg']       = "上传成功";
-                $data['success']   = true;
+                $data['msg'] = "上传成功";
+                $data['success'] = true;
             }
         }
 
@@ -149,7 +149,7 @@ class TopicsController extends Controller
     public function pdf(Topic $topic)
     {
         return PDF::loadFile(route('topics.show', $topic->id))
-                ->inline('topic-' . $topic->id . '.pdf');
+            ->inline('topic-' . $topic->id . '.pdf');
     }
 
     // 显示图片
@@ -158,6 +158,20 @@ class TopicsController extends Controller
         return SnappyImage::loadFile(route('topics.show', $topic->id))
             ->setOption('width', 595)
             ->setOption('format', 'png')
-            ->inline('topics-' .$topic->id. '.png');
+            ->inline('topics-' . $topic->id . '.png');
+    }
+
+    // 点赞
+    public function upVote(Topic $topic)
+    {
+        Auth::user()->upVote($topic);
+        return back();
+    }
+
+    // 点赞
+    public function cancelVote(Topic $topic)
+    {
+        Auth::user()->cancelVote($topic);
+        return back();
     }
 }
