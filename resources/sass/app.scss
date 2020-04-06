@@ -1,9 +1,7 @@
 // Variables
 @import 'variables';
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-
 // Fontawesome
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/regular';
@@ -11,6 +9,10 @@
 @import '~@fortawesome/fontawesome-free/scss/brands';
 
 /* universal */
+//html {
+//    filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
+//    -webkit-filter: grayscale(100%);
+//}
 
 body {
     font-family: Helvetica, "Microsoft YaHei", Arial, sans-serif;
@@ -84,7 +86,7 @@ body {
 /* Topic Index Page */
 .topics-index-page, .categories-show-page, .root-page {
     .topic-list {
-        .nav>li>a {
+        .nav > li > a {
             position: relative;
             display: block;
             padding: 5px 14px;
@@ -123,7 +125,7 @@ body {
 }
 
 .simditor-body img {
-    max-width:100%;
+    max-width: 100%;
 }
 
 /* Topic Show Page */
@@ -187,7 +189,7 @@ body {
         }
         img {
             border-radius: 50px;
-            box-shadow: -2px 0px 2px 0.5px #ddd,0px -2px 2px 0.5px #ddd,2px 0px 3px 0.5px #ddd,0px 2px 2px 0.5px #ddd;
+            box-shadow: -2px 0px 2px 0.5px #ddd, 0px -2px 2px 0.5px #ddd, 2px 0px 3px 0.5px #ddd, 0px 2px 2px 0.5px #ddd;
             margin-top: 12px;
         }
     }
@@ -256,3 +258,34 @@ body {
 .my-notify-list .border-bottom {
     margin-bottom: 10px !important;
 }
+
+.m-bg-color {
+    background-color: #dedede;
+}
+.my-search {
+    padding-left: 40px;
+    .btn {
+        border-radius: 1.25rem;
+    }
+    .form-control {
+        border-radius: 1.25rem;
+    }
+    .form-control:focus{
+        border-color: #ccc;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075)
+    }
+    .btn:focus {
+        border: 0;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }
+    .input-group-btn {
+        border-top-right-radius: 1.25rem;
+        border-bottom-right-radius: 1.25rem;
+    }
+    .i {
+        padding-right: 6px;
+    }
+}
+// #dedede

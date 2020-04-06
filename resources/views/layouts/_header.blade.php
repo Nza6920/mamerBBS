@@ -4,21 +4,38 @@
         <a class="navbar-brand " href="{{ url('/') }}">
             Mamer 论坛
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item {{ active_class(if_route('topics.index')) }}"><a class="nav-link" href="{{ route('topics.index') }}">话题</a></li>
+                <li class="nav-item {{ active_class(if_route('topics.index')) }}"><a class="nav-link"
+                                                                                     href="{{ route('topics.index') }}">话题</a>
+                </li>
                 @foreach(app(\App\Models\Category::class)->getAllCached() as $category)
-                    <li class="nav-item {{ category_nav_active($category->get('id')) }}"><a class="nav-link" href="{{ route('categories.show', $category->get('id')) }}">{{ $category->get('name')  }}</a></li>
+                    <li class="nav-item {{ category_nav_active($category->get('id')) }}"><a class="nav-link"
+                                                                                            href="{{ route('categories.show', $category->get('id')) }}">{{ $category->get('name')  }}</a>
+                    </li>
                 @endforeach
-                {{--<li class="nav-item {{ category_nav_active(1) }}"><a class="nav-link" href="{{ route('categories.show', 1) }}">分享</a></li>--}}
-                {{--<li class="nav-item {{ category_nav_active(2) }}"><a class="nav-link" href="{{ route('categories.show', 2) }}">教程</a></li>--}}
-                {{--<li class="nav-item {{ category_nav_active(3) }}"><a class="nav-link" href="{{ route('categories.show', 3) }}">问答</a></li>--}}
-                {{--<li class="nav-item {{ category_nav_active(4) }}"><a class="nav-link" href="{{ route('categories.show', 4) }}">公告</a></li>--}}
+                @auth
+                <form class="my-search" role="form" action="{{ route('topics.index') }}" method="GET">
+                    <div class="row">
+                        <div class="col-lg-11">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="搜索" name="search">
+                                <span class="input-group-btn m-bg-color">
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                @endauth
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -34,12 +51,14 @@
                         </a>
                     </li>
                     <li class="nav-item notification-badge">
-                        <a class="nav-link mr-3 badge badge-pill badge-{{ Auth::user()->notification_count > 0 ? 'hint' : 'secondary' }} text-white" href="{{ route('notifications.index') }}">
+                        <a class="nav-link mr-3 badge badge-pill badge-{{ Auth::user()->notification_count > 0 ? 'hint' : 'secondary' }} text-white"
+                           href="{{ route('notifications.index') }}">
                             {{ Auth::user()->notification_count }}
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="{{ Auth::user()->avatar }}" width="30px" height="30px">
                             {{ Auth::user()->name }}
                         </a>
@@ -62,7 +81,8 @@
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" id="logout" href="#">
-                                <form action="{{ route('logout') }}" method="POST" onsubmit="return confirm('您确定要退出吗？');">
+                                <form action="{{ route('logout') }}" method="POST"
+                                      onsubmit="return confirm('您确定要退出吗？');">
                                     {{ csrf_field() }}
                                     <button class="btn btn-block btn-danger" type="submit" name="button">退出</button>
                                 </form>
@@ -73,7 +93,7 @@
             </ul>
 
             {{--@if(!empty($location))--}}
-                {{--<p class="navbar-nav navbar-right" style="margin-left: 20px"> 访问来自: {{$location}}</p>--}}
+            {{--<p class="navbar-nav navbar-right" style="margin-left: 20px"> 访问来自: {{$location}}</p>--}}
             {{--@endif--}}
         </div>
     </div>

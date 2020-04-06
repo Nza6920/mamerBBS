@@ -23,12 +23,34 @@ class TopicsController extends Controller
     }
 
     // 排序话题
-    public function index(Request $request, Topic $topic, User $user, Link $link)
+    public function index(Request $request, User $user, Link $link)
     {
-        $topics = $topic->withOrder($request->order)->paginate(20);
+        // 创建一个查询构造器
+        $builder = Topic::query();
+
+        // 判断是否有提交 search 参数，如果有就赋值给 $search 变量
+        // search 参数用来模糊搜索
+        if ($search = $request->input('search', '')) {
+            $like = '%'.$search.'%';
+            // 模糊搜索商品标题、商品详情、SKU 标题、SKU描述
+            $builder->where(function ($query) use ($like) {
+                $query->where('title', 'like', $like)
+                    ->orWhere('excerpt', 'like', $like);
+            });
+        }
+        if ($order = $request->input('order', 'default')) {
+            switch ($order) {
+                case 'recent':
+                    $builder->orderBy('updated_at', 'desc');
+                    break;
+                default:
+                    $builder->orderBy('created_at', 'desc');
+                    break;
+            }
+        }
         $active_users = $user->getActiveUsers();
         $links = $link->getAllCached();
-
+        $topics = $builder->paginate(16);
         return view('topics.index', compact('topics', 'active_users', 'links'));
     }
 

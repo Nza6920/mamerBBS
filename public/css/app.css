@@ -17063,3 +17063,40 @@ body {
   margin-bottom: 10px !important;
 }
 
+.m-bg-color {
+  background-color: #dedede;
+}
+
+.my-search {
+  padding-left: 40px;
+}
+
+.my-search .btn {
+  border-radius: 1.25rem;
+}
+
+.my-search .form-control {
+  border-radius: 1.25rem;
+}
+
+.my-search .form-control:focus {
+  border-color: #ccc;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.my-search .btn:focus {
+  border: 0;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.my-search .input-group-btn {
+  border-top-right-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+}
+
+.my-search .i {
+  padding-right: 6px;
+}
+

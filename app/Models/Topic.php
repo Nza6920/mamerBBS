@@ -40,7 +40,6 @@ class Topic extends Model
             case 'recent':
                 $query->recent();
                 break;
-
             default:
                 $query->recentReplied();
                 break;
