@@ -8,6 +8,7 @@ use App\Models\Topic;
 use App\Models\User;
 use App\Transformers\TopicTransformer;
 use App\Transformers\UserTransformer;
+use Dingo\Api\Contract\Http\Request;
 
 class UsersController extends Controller
 {
@@ -78,5 +79,69 @@ class UsersController extends Controller
     public function myVotes() {
         $topics = $this->user()->votedItems(Topic::class)->paginate(15);
         return $this->response->paginator($topics, new TopicTransformer());
+    }
+
+    /**
+     * 当前登陆用户的粉丝
+     * @param User $user 用户
+     * @return \Dingo\Api\Http\Response
+     */
+    public function followers(User $user) {
+        // 获取粉丝列表
+        $followers = $user->followers()->paginate(15);
+
+        return $this->response->paginator($followers, new UserTransformer());
+    }
+
+    /**
+     * 当前登陆用户的粉丝
+     * @param User $user 用户
+     * @return \Dingo\Api\Http\Response
+     */
+    public function followings(User $user) {
+        // 获取关注列表
+        $followings = $user->followings()->paginate(15);
+
+        return $this->response->paginator($followings, new UserTransformer());
+    }
+
+    /**
+     * 关注某人
+     * @param Request $request
+     * @return \Dingo\Api\Http\Response
+     */
+    public function follow(Request $request) {
+
+        $user = $this->user();
+
+        // 关注人id
+        $followId = $request->id;
+
+        // 判断用户是否关注了
+        if (! $user->isFollowing($followId)) {
+            $user->follow($request->id);
+        }
+
+        return $this->response->noContent();
+    }
+
+    /**
+     * 取关某人
+     * @param Request $request
+     * @return \Dingo\Api\Http\Response
+     */
+    public function unFollow(Request $request) {
+
+        $user = $this->user();
+
+        // 关注人id
+        $followId = $request->id;
+
+        // 判断用户是否关注了
+        if ($user->isFollowing($followId)) {
+            $user->unFollow($request->id);
+        }
+
+        return $this->response->noContent();
     }
 }

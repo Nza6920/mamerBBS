@@ -57,6 +57,12 @@ $api->version('v1', [
         // 第三方登录
         $api->post('socials/{social_type}/authorizations', 'AuthorizationsController@socialStore')
             ->name('api.socials.authorizations.store');
+        // 用户的粉丝
+        $api->get('users/{user}/followers', 'UsersController@followers')
+            ->name('api.user.followers');
+        // 当前登陆用户的关注
+        $api->get('users/{user}/followings', 'UsersController@followings')
+            ->name('api.user.followings');
 
         /** 测试专用接口 **/
         $api->post('test/destroy', 'TestController@destroy')
@@ -112,6 +118,12 @@ $api->version('v1', [
             // 当前登陆用户权限
             $api->get('user/permission', 'PermissionsController@index')
                 ->name('api.user.permission.index');
+            // 关注某人
+            $api->post('users/followers', 'UsersController@follow')
+                ->name('api.user.follow');
+            // 取关某人
+            $api->delete('users/followers', 'UsersController@unFollow')
+                ->name('api.user.unFollow');
         });
     });
 });
