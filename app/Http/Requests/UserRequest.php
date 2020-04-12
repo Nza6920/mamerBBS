@@ -43,6 +43,4 @@ class UserRequest extends FormRequest
             'name' => '用户名',
         ];
     }
-
-
 }

@@ -69,12 +69,15 @@ $api->version('v1', [
             // 当前登陆用户信息
             $api->get('user', 'UsersController@me')
                 ->name('api.user.show');
-            // 图片资源
-            $api->post('images', 'ImagesController@store')
-                ->name('api.images.store');
             // 编辑登录用户信息
             $api->patch('user', 'UsersController@update')
                 ->name('api.user.update');
+            // 当前用户的点赞
+            $api->get('user/votes', 'UsersController@myVotes')
+                ->name('api.user.votes');
+            // 图片资源
+            $api->post('images', 'ImagesController@store')
+                ->name('api.images.store');
             // 发布话题
             $api->post('topics', 'TopicsController@store')
                 ->name('api.topics.store');
@@ -84,6 +87,13 @@ $api->version('v1', [
             // 删除话题
             $api->delete('topics/{topic}', 'TopicsController@destroy')
                 ->name('api.topics.destroy');
+            // 话题点赞
+            $api->post('topics/{topic}/votes', 'TopicsController@upVote')
+                ->name('api.topics.votes.up');
+            // 取消点赞
+            $api->delete('topics/{topic}/votes', 'TopicsController@cancelVote')
+                ->name('api.topics.votes.cancel');
+
             // 发布回复
             $api->post('topics/{topic}/replies', 'RepliesController@store')
                 ->name('api.topics.replies.store');

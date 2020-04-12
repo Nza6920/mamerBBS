@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\Api\UserRequest;
 use App\Models\Image;
+use App\Models\Topic;
 use App\Models\User;
+use App\Transformers\TopicTransformer;
 use App\Transformers\UserTransformer;
 
 class UsersController extends Controller
@@ -66,8 +68,15 @@ class UsersController extends Controller
         return $this->response->item($user, new UserTransformer());
     }
 
+    // 活跃用户
     public function activedIndex(User $user)
     {
         return $this->response->collection($user->getActiveUsers(), new UserTransformer());
+    }
+
+    // 我的点赞
+    public function myVotes() {
+        $topics = $this->user()->votedItems(Topic::class)->paginate(15);
+        return $this->response->paginator($topics, new TopicTransformer());
     }
 }

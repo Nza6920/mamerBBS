@@ -186,6 +186,7 @@ class TopicsController extends Controller
     // 点赞
     public function upVote(Topic $topic)
     {
+        $topic->updated_at = now();
         Auth::user()->upVote($topic);
         return back();
     }

@@ -75,4 +75,18 @@ class TopicsController extends Controller
     {
         return $this->response->item($topic, new TopicTransformer());
     }
+
+    // 点赞
+    public function upVote(Topic $topic)
+    {
+        $this->user()->upVote($topic);
+        return $this->response->noContent();
+    }
+
+    // 取消点赞
+    public function cancelVote(Topic $topic)
+    {
+        $this->user()->cancelVote($topic);
+        return $this->response->noContent();
+    }
 }
