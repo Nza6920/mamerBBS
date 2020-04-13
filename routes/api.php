@@ -124,6 +124,9 @@ $api->version('v1', [
             // 取关某人
             $api->delete('users/followers', 'UsersController@unFollow')
                 ->name('api.user.unFollow');
+            // 判断当前登陆用户是否关注某人
+            $api->get('users/followers', 'UsersController@isFollowing')
+                ->name('api.user.isFollowing');
         });
     });
 });

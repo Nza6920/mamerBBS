@@ -76,7 +76,8 @@ class UsersController extends Controller
     }
 
     // 我的点赞
-    public function myVotes() {
+    public function myVotes()
+    {
         $topics = $this->user()->votedItems(Topic::class)->paginate(15);
         return $this->response->paginator($topics, new TopicTransformer());
     }
@@ -86,7 +87,8 @@ class UsersController extends Controller
      * @param User $user 用户
      * @return \Dingo\Api\Http\Response
      */
-    public function followers(User $user) {
+    public function followers(User $user)
+    {
         // 获取粉丝列表
         $followers = $user->followers()->paginate(15);
 
@@ -98,7 +100,8 @@ class UsersController extends Controller
      * @param User $user 用户
      * @return \Dingo\Api\Http\Response
      */
-    public function followings(User $user) {
+    public function followings(User $user)
+    {
         // 获取关注列表
         $followings = $user->followings()->paginate(15);
 
@@ -110,7 +113,8 @@ class UsersController extends Controller
      * @param Request $request
      * @return \Dingo\Api\Http\Response
      */
-    public function follow(Request $request) {
+    public function follow(Request $request)
+    {
 
         $user = $this->user();
 
@@ -118,7 +122,7 @@ class UsersController extends Controller
         $followId = $request->id;
 
         // 判断用户是否关注了
-        if (! $user->isFollowing($followId)) {
+        if (!$user->isFollowing($followId)) {
             $user->follow($request->id);
         }
 
@@ -130,7 +134,8 @@ class UsersController extends Controller
      * @param Request $request
      * @return \Dingo\Api\Http\Response
      */
-    public function unFollow(Request $request) {
+    public function unFollow(Request $request)
+    {
 
         $user = $this->user();
 
@@ -143,5 +148,15 @@ class UsersController extends Controller
         }
 
         return $this->response->noContent();
+    }
+
+    /**
+     * 判断当前登陆用户是否关注某用户
+     * @param Request $request
+     * @return array
+     */
+    public function isFollowing(Request $request)
+    {
+        return ['followed' => $this->user()->isFollowing($request->id)];
     }
 }
