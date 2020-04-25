@@ -69,6 +69,8 @@ $api->version('v1', [
             ->name('api.test.destroy');
         $api->post('test/token', 'TestController@generateToken')
             ->name('api.test.token');
+        $api->get('test/tokens', 'TestController@generateTokens')
+            ->name('api.test.tokens');
 
         /** 需要token的接口 **/
         $api->group(['middleware' => 'api.auth'], function ($api) {
