@@ -8,8 +8,8 @@ $api->version('v1', [
 ], function ($api) {
     $api->group([
         'middleware' => 'api.throttle',
-        'limit'      => config('api.rate_limits.sign.limit'),     // 默认10次
-        'expires'    => config('api.rate_limits.sign.expires'),   // 默认1分钟
+//        'limit'      => config('api.rate_limits.sign.limit'),     // 默认10次
+//        'expires'    => config('api.rate_limits.sign.expires'),   // 默认1分钟
     ], function ($api) {
         /** 不需要token的接口 **/
         // 短信验证码
