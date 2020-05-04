@@ -8,8 +8,8 @@ $api->version('v1', [
 ], function ($api) {
     $api->group([
         'middleware' => 'api.throttle',
-//        'limit'      => config('api.rate_limits.sign.limit'),     // 默认10次
-//        'expires'    => config('api.rate_limits.sign.expires'),   // 默认1分钟
+        'limit'      => config('api.rate_limits.sign.limit'),     // 默认10次
+        'expires'    => config('api.rate_limits.sign.expires'),   // 默认1分钟
     ], function ($api) {
         /** 不需要token的接口 **/
         // 短信验证码
@@ -24,6 +24,9 @@ $api->version('v1', [
         // 登陆
         $api->post('authorizations', 'AuthorizationsController@store')
             ->name('api.authorizations.store');
+        // 短信登录
+        $api->post('msg/authorizations', 'AuthorizationsController@msgStore')
+            ->name('api.socials.authorizations.msg.store');
         // 刷新 token
         $api->put('authorizations/current', 'AuthorizationsController@update')
             ->name('api.authorizations.update');
@@ -101,6 +104,9 @@ $api->version('v1', [
             // 取消点赞
             $api->delete('topics/{topic}/votes', 'TopicsController@cancelVote')
                 ->name('api.topics.votes.cancel');
+            // 判断文章是否点赞
+            $api->get('topics/{topic}/voted', 'TopicsController@isVoted')
+                ->name('api.topics.votes.isVoted');
 
             // 发布回复
             $api->post('topics/{topic}/replies', 'RepliesController@store')

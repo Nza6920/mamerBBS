@@ -89,4 +89,14 @@ class TopicsController extends Controller
         $this->user()->cancelVote($topic);
         return $this->response->noContent();
     }
+
+    /**
+     * 判断当前登陆用户是否点赞了某篇文章
+     * @param Topic $topic
+     * @return array
+     */
+    public function isVoted(Topic $topic)
+    {
+        return ['voted' => $this->user()->hasUpVoted($topic)];
+    }
 }

@@ -24,7 +24,7 @@ class TestController extends Controller
         if ($request->has('id')) {
             $user = User::where('id', $request->id)->first();
         } elseif ($request->has('phone')) {
-            $user = User::where('phone', $request->id)->first();
+            $user = User::where('phone', $request->phone)->first();
         } else {
             $user = User::where('email', $request->email)->first();
         }

@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\Api\AuthorizationRequest;
 use App\Http\Requests\Api\SocialAuthorizationRequest;
 use App\Models\User;
+use Dingo\Api\Contract\Http\Request;
 
 class AuthorizationsController extends Controller
 {
@@ -26,6 +27,35 @@ class AuthorizationsController extends Controller
             return $this->response->errorUnauthorized('用户名或密码错误');
         }
 
+        return $this->respondWithToken($token)->setStatusCode(201);
+    }
+
+    // 短信登陆
+    public function msgStore(Request $request)
+    {
+        $verifyData = \Cache::get($request->verification_key);
+
+        // key 不存在 or 失效
+        if (!$verifyData) {
+            return $this->response->error('验证码失效', 422);
+        }
+        // 验证码不正确
+        if (!hash_equals($verifyData['code'], $request->verification_code)) {
+            // 返回 401
+            return $this->response->errorUnauthorized('验证码错误');
+        }
+        // 验证码不正确
+        if (!hash_equals($verifyData['phone'], $request->phone)) {
+            // 返回 401
+            return $this->response->errorUnauthorized('手机号非法');
+        }
+
+        $user = User::where('phone', $request->phone)->first();
+        if ($user == null) {
+            return $this->response->errorUnauthorized('用户不存在， 请先注册');
+        }
+
+        $token = \Auth::guard('api')->fromUser($user);
         return $this->respondWithToken($token)->setStatusCode(201);
     }
 
