@@ -20,7 +20,7 @@
 
                     @if($topic->id)
                         <form action="{{ route('topics.update', $topic->id) }}" method="POST" accept-charset="UTF-8">
-                        <input type="hidden" name="_method" value="PUT">
+                        <input type="hidden" name="_method" value="PATCH">
                     @else
                         <form action="{{ route('topics.store') }}" method="POST" accept-charset="UTF-8">
                     @endif
@@ -72,6 +72,28 @@
             var editor = new Simditor({
                 textarea: $('#editor'),
                 pasteImage: true,
+                codeLanguages: [
+                    { name: 'Bash', value: 'bash' },
+                    { name: 'C++', value: 'c++' },
+                    { name: 'C#', value: 'cs' },
+                    { name: 'CSS', value: 'css' },
+                    { name: 'Erlang', value: 'erlang' },
+                    { name: 'Less', value: 'less' },
+                    { name: 'Sass', value: 'sass' },
+                    { name: 'Diff', value: 'diff' },
+                    { name: 'CoffeeScript', value: 'coffeescript' },
+                    { name: 'HTML,XML', value: 'html' },
+                    { name: 'JSON', value: 'json' },
+                    { name: 'Java', value: 'java' },
+                    { name: 'JavaScript', value: 'js' },
+                    { name: 'Markdown', value: 'markdown' },
+                    { name: 'Objective C', value: 'oc' },
+                    { name: 'PHP', value: 'php' },
+                    { name: 'Perl', value: 'parl' },
+                    { name: 'Python', value: 'python' },
+                    { name: 'Ruby', value: 'ruby' },
+                    { name: 'SQL', value: 'sql'}
+                ],
                 upload: {
                     url: '{{ route('topics.upload_image') }}',
                     params: {
