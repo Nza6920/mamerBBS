@@ -41,10 +41,10 @@ class TopicsController extends Controller
         if ($order = $request->input('order', 'default')) {
             switch ($order) {
                 case 'recent':
-                    $builder->orderBy('updated_at', 'desc');
+                    $builder->orderBy('created_at', 'desc');
                     break;
                 default:
-                    $builder->orderBy('created_at', 'desc');
+                    $builder->orderBy('updated_at', 'desc');
                     break;
             }
         }
